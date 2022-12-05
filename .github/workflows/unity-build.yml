@@ -42,7 +42,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: ${{ matrix.projectPath }}
+          projectPath: /LF08_Unity/ProjectSettings/ProjectVersion.txt
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Build
