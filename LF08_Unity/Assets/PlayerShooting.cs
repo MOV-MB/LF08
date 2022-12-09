@@ -29,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(shootingPoint.up * bulletForce, ForceMode2D.Impulse);
+            // find gameobject with tag
         }
     }
 }
