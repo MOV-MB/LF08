@@ -10,6 +10,12 @@ public class bullet : MonoBehaviour
     {
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         Destroy(effect, 3f);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
+
+        if(collision.collider.tag == "Enemy")
+        {
+            Debug.Log("hit enemy");
+            Destroy(collision.gameObject);
+        }
     }
 }
