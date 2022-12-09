@@ -21,6 +21,8 @@ public class Buttons : MonoBehaviour
     public void SwitchScene(int index)
     {
         SceneManager.LoadScene(index);
+
+        //needed in case of game ending while being paused
         Time.timeScale = 1f;
         PauseMenu.isGamePaused = false;
     }
@@ -28,25 +30,5 @@ public class Buttons : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-    }
-
-    IEnumerator timer(int index)
-    {
-        AudioManager.main.PlaySFX(buttonClickSoundName);
-        AudioManager.main.PlaySFX("Piano");
-        float t = 0;
-        while(t < 0.8)
-        {
-            t += Time.deltaTime;
-
-
-
-            yield return null;
-        }
-
-
-
-
-        SwitchScene(index);
     }
 }
