@@ -55,6 +55,7 @@ jobs:
         with:
           projectPath: LF08_Unity
           targetPlatform: StandaloneWindows
+          allowDirtyBuild: true
 
       # Output
       - uses: actions/upload-artifact@v2
