@@ -21,6 +21,8 @@ public class Buttons : MonoBehaviour
     public void SwitchScene(int index)
     {
         SceneManager.LoadScene(index);
+        Time.timeScale = 1f;
+        PauseMenu.isGamePaused = false;
     }
 
     public void ExitGame()
