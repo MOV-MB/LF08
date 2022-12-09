@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a228880c81f812c469144175e64fe2b3
+guid: ad1cf7ff6fa464745af012fc87f93ca7
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Lemon Days
+  - Oblivious font
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
