@@ -1,71 +1,98 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    public Transform ShootingPoint;
-    public GameObject BulletPrefab;
-    public float BulletForce = 30f;
-    public float Firerate = 0.5f;
-    public float moveSpeed = 10f;
-    private Rigidbody2D PlayerRigidbody;
-    public Camera cam;
-
-    private Vector2 movement;
-    private Vector2 mousePosition;
-    private float _nextfire;
-
-    void Start()
+    public class Player : MonoBehaviour
     {
-        PlayerRigidbody = GetComponent<Rigidbody2D>();
-    }
+        public Transform ShootingPoint;
+        public GameObject BulletPrefab;
+        public Text DeathText;
 
-    // Update is called once per frame
-    void Update()
-    {
-        HandleInput();
-        UpdateMovement();
-        UpdateRotation();
-        UpdateCamera();
-    }
+        public float BulletForce = 30f;
+        public float Firerate = 0.5f;
+        public float MoveSpeed = 10f;
+        public float Health = 100f;
 
-    void HandleInput()
-    {
-        if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
+        private Rigidbody2D _playerRigidbody;
+        public Camera Cam;
+
+        private Vector2 _movement;
+        private Vector2 _mousePosition;
+        private float _nextfire;
+
+        private void Start()
         {
-            Shoot();
+            _playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        // Update is called once per frame
+        private void Update()
+        {
+            HandlePlayerInput();
+            UpdatePlayerMovement();
+            UpdatePlayerRotation();
+            UpdateCamera();
+        }
 
-        mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-    }
+        private void HandlePlayerInput()
+        {
+            if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
+            {
+                Shoot();
+            }
 
-    void Shoot()
-    {
-        if (!(Time.time > _nextfire)) return;
-        _nextfire = Time.time + Firerate;
-        GameObject bullet = Instantiate(BulletPrefab, ShootingPoint.position, ShootingPoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.TransformDirection(Vector2.up) * BulletForce, ForceMode2D.Impulse);
-    }
+            _movement.x = Input.GetAxisRaw("Horizontal");
+            _movement.y = Input.GetAxisRaw("Vertical");
 
-    void UpdateMovement()
-    {
-        PlayerRigidbody.MovePosition(PlayerRigidbody.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }
+            _mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
+        }
 
-    void UpdateRotation()
-    {
-        Vector2 lookDirection = mousePosition - PlayerRigidbody.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
-        PlayerRigidbody.rotation = angle;
-    }
+        private void Shoot()
+        {
+            if (!(Time.time > _nextfire)) return;
+            _nextfire = Time.time + Firerate;
+            GameObject bullet = Instantiate(BulletPrefab, ShootingPoint.position, ShootingPoint.rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(transform.TransformDirection(Vector2.up) * BulletForce, ForceMode2D.Impulse);
+        }
 
-    void UpdateCamera()
-    {
-        cam.transform.position = transform.position + new Vector3(0, 1, -5);
+        private void UpdatePlayerMovement()
+        {
+            _playerRigidbody.MovePosition(_playerRigidbody.position + _movement * MoveSpeed * Time.fixedDeltaTime);
+        }
+
+        private void UpdatePlayerRotation()
+        {
+            Vector2 lookDirection = _mousePosition - _playerRigidbody.position;
+            float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+            _playerRigidbody.rotation = angle;
+        }
+
+        private void UpdateCamera()
+        {
+            Cam.transform.position = transform.position + new Vector3(0, 1, -5);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            Health -= damage;
+            if (!(Health <= 0)) return;
+            Destroy(gameObject);
+            DeathText.gameObject.SetActive(true);
+
+            StartCoroutine(RestartGame());
+        }
+
+        private IEnumerator RestartGame()
+        {
+            yield return new WaitForSeconds(3);
+            // Restart the game.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        
     }
 }
