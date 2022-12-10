@@ -2,20 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    public GameObject hitEffect;
+    public GameObject HitEffect;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 3f);
-        Destroy(this.gameObject);
-
-        if(collision.collider.tag == "Enemy")
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
+        if (hit.collider != null)
         {
-            Debug.Log("hit enemy");
-            Destroy(collision.gameObject);
+            GameObject effect = Instantiate(HitEffect, hit.point, Quaternion.identity);
+            Destroy(effect, 0.5f);
         }
+        
+        if (collider.CompareTag("Enemy"))
+        {
+            Debug.Log("Hit" + collider.name);
+            Destroy(collider.gameObject);
+        }
+
+        if (collider.CompareTag("Tilemap"))
+        {
+            Debug.Log("Hit Tilemap Edge Collider");
+            
+        }
+        
+        Destroy(this.gameObject);
     }
+
 }

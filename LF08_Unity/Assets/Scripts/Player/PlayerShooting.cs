@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public Transform shootingPoint;
-    public GameObject bulletPrefab;
+    public Transform ShootingPoint;
+    public GameObject BulletPrefab;
 
-    public float bulletForce = 30f;
-
-    public float firerate = 0.5f;
-    float nextfire;
+    public float BulletForce = 30f;
+    public float Firerate = 0.5f;
+    
+    private float _nextfire;
 
     // Update is called once per frame
     void Update()
@@ -23,12 +23,10 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        if(Time.time > nextfire)
-        {
-            nextfire = Time.time + firerate;
-            GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(shootingPoint.up * bulletForce, ForceMode2D.Impulse);
-        }
+        if (!(Time.time > _nextfire)) return;
+        _nextfire = Time.time + Firerate;
+        GameObject bullet = Instantiate(BulletPrefab, ShootingPoint.position, ShootingPoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(transform.TransformDirection(Vector2.up) * BulletForce, ForceMode2D.Impulse);
     }
 }
