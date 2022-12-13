@@ -8,7 +8,7 @@ namespace Assets.Scripts.Player
         public GameObject HitEffect;
         private GameObject _enemy;
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnCollisionEnter2D(Collision2D collider)
         {
         
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player
                 Destroy(effect, 0.5f);
             }
         
-            if (collider.CompareTag("Enemy"))
+            if (collider.collider.CompareTag("Enemy"))
             {
                 // Get Enemy GameObject
                 _enemy = collider.gameObject;
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Player
                 Debug.Log(_enemy.name + " was hit!" + " Health: " + _enemy.GetComponent<Enemy>().Health);
             }
 
-            if (collider.CompareTag("Tilemap"))
+            if (collider.collider.CompareTag("Tilemap"))
             {
                 Debug.Log("Hit Tilemap Edge Collider");
             

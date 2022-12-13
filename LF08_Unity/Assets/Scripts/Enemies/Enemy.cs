@@ -18,7 +18,7 @@ namespace Assets.Scripts.Enemies
         protected Rigidbody2D Rb;
 
         private GameObject _player;
-        private bool _isCollidingWithPlayer;
+        private float _timeSinceLastHit = 1f;
 
         private void Start()
         {
@@ -27,10 +27,28 @@ namespace Assets.Scripts.Enemies
             _player = GameObject.Find("Player");
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             // Update the movement direction of the enemy
             UpdateMovement();
+        }
+        
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            // Check if the enemy hit the player game object
+            if (!collision.collider.CompareTag("Player")) return;
+
+            // Increment the time since the last hit
+            _timeSinceLastHit += Time.deltaTime;
+
+            // Check if at least one second has passed since the last hit
+            if (!(_timeSinceLastHit >= 1f)) return;
+            _player.GetComponent<Player.Player>().TakeDamage(Damage);
+            Debug.Log(collision.collider.name + " was hit!" + " Health: " +
+                      collision.collider.GetComponent<Player.Player>().Health);
+
+            // Reset the time since the last hit
+            _timeSinceLastHit = 0f;
         }
 
         public virtual void TakeDamage(float damage)
@@ -63,32 +81,7 @@ namespace Assets.Scripts.Enemies
             Rb.MovePosition(Rb.position + MoveSpeed * Time.fixedDeltaTime * Movement);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            // Check if the enemy hit the player game object
-            if (!collision.collider.CompareTag("Player")) return;
-            // Deal damage to the player
-            collision.collider.GetComponent<Player.Player>().TakeDamage(Damage);
-            Debug.Log(collision.collider.name + " was hit!" + " Health: " +
-                      collision.collider.GetComponent<Player.Player>().Health);
-        }
         
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            // Check if the enemy is colliding with the player
-            if (other.gameObject.CompareTag("Player"))
-            {
-                _isCollidingWithPlayer = true;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            // Check if the enemy is no longer colliding with the player
-            if (other.gameObject.CompareTag("Player"))
-            {
-                _isCollidingWithPlayer = false;
-            }
-        }
+        
     }
 }

@@ -32,9 +32,13 @@ namespace Assets.Scripts.Player
         private void Update()
         {
             HandlePlayerInput();
-            UpdatePlayerMovement();
             UpdatePlayerRotation();
             UpdateCamera();
+        }
+
+        private void FixedUpdate()
+        {
+            UpdatePlayerMovement();
         }
 
         private void HandlePlayerInput()
@@ -61,7 +65,12 @@ namespace Assets.Scripts.Player
 
         private void UpdatePlayerMovement()
         {
-            _playerRigidbody.MovePosition(_playerRigidbody.position + _movement * MoveSpeed * Time.fixedDeltaTime);
+            _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement);
+        }
+
+        private void CheckForCollision()
+        {
+            
         }
 
         private void UpdatePlayerRotation()
