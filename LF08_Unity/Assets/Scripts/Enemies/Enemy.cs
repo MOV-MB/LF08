@@ -20,6 +20,8 @@ namespace Assets.Scripts.Enemies
         private GameObject _player;
         private float _timeSinceLastHit = 1f;
 
+        private const string enemyMeleeSoundName = "meleeEnemy";
+
         private void Start()
         {
             // Get the Rigidbody2D component attached to the enemy game object
@@ -37,12 +39,12 @@ namespace Assets.Scripts.Enemies
         {
             // Check if the enemy hit the player game object
             if (!collision.collider.CompareTag("Player")) return;
-
             // Increment the time since the last hit
             _timeSinceLastHit += Time.deltaTime;
 
             // Check if at least one second has passed since the last hit
             if (!(_timeSinceLastHit >= 1f)) return;
+            AudioManager.main.PlaySFX(enemyMeleeSoundName);
             _player.GetComponent<Player.Player>().TakeDamage(Damage);
             Debug.Log(collision.collider.name + " was hit!" + " Health: " +
                       collision.collider.GetComponent<Player.Player>().Health);
