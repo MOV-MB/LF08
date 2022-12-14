@@ -30,7 +30,7 @@ namespace Assets.Scripts.Enemies
         private void FixedUpdate()
         {
             // Update the movement direction of the enemy
-            UpdateMovement();
+            //UpdateMovement();
         }
         
         private void OnCollisionStay2D(Collision2D collision)
@@ -57,7 +57,7 @@ namespace Assets.Scripts.Enemies
             if (Health <= 0) Destroy(gameObject);
         }
 
-        // Method to update the movement direction of the enemy
+        /*
         protected virtual void UpdateMovement()
         {
             // Check if the player is still alive
@@ -80,7 +80,7 @@ namespace Assets.Scripts.Enemies
 
             Rb.MovePosition(Rb.position + MoveSpeed * Time.fixedDeltaTime * Movement);
         }
-
+        */
         
         
     }
