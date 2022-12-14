@@ -23,6 +23,8 @@ namespace Assets.Scripts.Player
         private Vector2 _mousePosition;
         private float _nextfire;
 
+        private const string playerShootingSoundName = "playerShoot";
+
         private void Start()
         {
             _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -61,6 +63,7 @@ namespace Assets.Scripts.Player
             GameObject bullet = Instantiate(BulletPrefab, ShootingPoint.position, ShootingPoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(transform.TransformDirection(Vector2.up) * BulletForce, ForceMode2D.Impulse);
+            AudioManager.main.PlaySFX(playerShootingSoundName);
         }
 
         private void UpdatePlayerMovement()
