@@ -1,39 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
-using System;
-using System.Text;
-using System.Data;
-using System.Data.SQLite;
-
-
-    public class Statistics : MonoBehaviour
+public class Statistics : MonoBehaviour
 {
-    string help = "https://www.codeguru.com/dotnet/using-sqlite-in-a-c-application/";
-    string sqlConnection = "C:/Users/marce/Desktop/Code/Berufsschule/LF8 DB";
+     // help: https://www.codeguru.com/dotnet/using-sqlite-in-a-c-application/
+    private static readonly string _sqlConnection = "C:/Users/marce/Desktop/Code/Berufsschule/LF8 DB";
 
-    public void getStatistics()
+    public void GetStatistics()
     {
-        SQLiteConnection sqlite_conn;
-        sqlite_conn = CreateConnection();
+        SQLiteConnection sqliteConn = CreateConnection();
     }
 
     public static SQLiteConnection CreateConnection()
     {
-        SQLiteConnection sqlite_conn;
+        SQLiteConnection sqliteConn;
         // Create a new database connection:
-        sqlite_conn = new SQLiteConnection("Data Source=" + sqlConnection + "gamedb.db");
-         // Open the connection:
-         try
+        sqliteConn = new SQLiteConnection("Data Source=" + _sqlConnection + "gamedb.db");
+        // Open the connection:
+        try
         {
-            sqlite_conn.Open();
+            // sqlite_conn.Open();
         }
         catch (Exception ex)
         {
-            Console.Write("Connection Error");
+            Debug.Log("Error: " + ex.Message);
         }
-        return sqlite_conn;
-    }
 
+        return sqliteConn;
+    }
 }

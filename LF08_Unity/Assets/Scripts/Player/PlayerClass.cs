@@ -4,60 +4,56 @@ using UnityEngine;
 
 public class PlayerClass : MonoBehaviour
 {
-    private int gold;
-    private string player_name;
-    private int difficulty;
-    private int kill_count;
-    private int death_count;
+    private int _gold;
+    private string _playerName;
+    private readonly int _difficulty;
+    private int _killCount;
+    private int _deathCount;
 
 
-    public PlayerClass(string player_name, int difficulty)
+    public PlayerClass(string playerName, int difficulty)
     {
-        this.player_name = player_name;
-        this.gold = 0;
-        this.kill_count = 0;
-        this.death_count = 0;
-        this.difficulty = difficulty;
-
+        this._playerName = playerName;
+        _gold = 0;
+        _killCount = 0;
+        _deathCount = 0;
+        this._difficulty = difficulty;
     }
-    public PlayerClass(string player_name)
+
+    public PlayerClass(string playerName)
     {
-        this.player_name = player_name;
-        this.gold = 0;
-        this.kill_count = 0;
-        this.death_count = 0;
-        this.difficulty = 1;
+        this._playerName = playerName;
+        _gold = 0;
+        _killCount = 0;
+        _deathCount = 0;
+        _difficulty = 1;
     }
 
 
     //Methoden
-    public void addGold(int value)
+    public void AddGold(int value)
     {
-        this.gold += value * this.difficulty;
+        _gold += value * _difficulty;
     }
 
-    public void removeGold(int value)
+    public void RemoveGold(int value)
     {
-        this.gold -= value * this.difficulty;
+        _gold -= value * _difficulty;
     }
 
-    public void addDeath()
+    public void AddDeath()
     {
-        this.death_count++;
+        _deathCount++;
     }
 
-    public void addKill()
+    public void AddKill()
     {
-        this.kill_count++;
+        _killCount++;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (this.gold > 0)
-        {
-            this.gold = 0;
-        }
-
+        if (_gold > 0) _gold = 0;
     }
 }
