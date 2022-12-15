@@ -8,6 +8,9 @@ namespace Assets.Scripts.Enemies
         public float Damage = 20f;
         public float Health = 20f;
 
+        public delegate void OnDeathHandler(int enemyId);
+        public static event OnDeathHandler OnDeath;
+
         // The direction in which the enemy is moving
         protected Vector2 Movement;
 
@@ -35,7 +38,7 @@ namespace Assets.Scripts.Enemies
             //UpdateMovement();
         }
         
-        private void OnCollisionStay2D(Collision2D collision)
+        protected virtual void OnCollisionStay2D(Collision2D collision)
         {
             // Check if the enemy hit the player game object
             if (!collision.collider.CompareTag("Player")) return;
@@ -56,7 +59,15 @@ namespace Assets.Scripts.Enemies
         public virtual void TakeDamage(float damage)
         {
             Health -= damage;
-            if (Health <= 0) Destroy(gameObject);
+            if (!(Health <= 0)) return;
+            OnEnemyDeath();
+            Destroy(gameObject);
+
+        }
+
+        public virtual void OnEnemyDeath()
+        {
+            OnDeath?.Invoke(gameObject.GetInstanceID());
         }
 
         /*

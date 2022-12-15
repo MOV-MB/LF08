@@ -1,3 +1,4 @@
+using Assets.Scripts.Enemies;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ namespace Assets.Scripts.Player
     {
         public Transform ShootingPoint;
         public GameObject BulletPrefab;
+        private PlayerStatsManager _playerStatsManager;
 
         public float BulletForce = 30f;
         public float Firerate = 0.5f;
@@ -28,6 +30,9 @@ namespace Assets.Scripts.Player
 
         private void Start()
         {
+            _playerStatsManager = new PlayerStatsManager();
+
+            Enemy.OnDeath += OnEnemyDeath;
             _playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
@@ -93,6 +98,12 @@ namespace Assets.Scripts.Player
             if (!(Health <= 0)) return;
             Destroy(gameObject);
             SceneManager.LoadScene(2);
+        }
+
+        private void OnEnemyDeath(int enemyId)
+        {
+            _playerStatsManager._playerStats.IncrementKillCount();
+            Debug.Log(_playerStatsManager._playerStats.KillCount);
         }
 
     }
