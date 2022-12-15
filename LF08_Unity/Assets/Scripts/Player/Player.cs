@@ -9,7 +9,6 @@ namespace Assets.Scripts.Player
     {
         public Transform ShootingPoint;
         public GameObject BulletPrefab;
-        public Text DeathText;
 
         public float BulletForce = 30f;
         public float Firerate = 0.5f;
@@ -24,6 +23,8 @@ namespace Assets.Scripts.Player
         private float _nextfire;
 
         private const string playerShootingSoundName = "playerShoot";
+
+        public Healthbar healthBar;
 
         private void Start()
         {
@@ -71,11 +72,6 @@ namespace Assets.Scripts.Player
             _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement);
         }
 
-        private void CheckForCollision()
-        {
-            
-        }
-
         private void UpdatePlayerRotation()
         {
             Vector2 lookDirection = _mousePosition - _playerRigidbody.position;
@@ -91,20 +87,13 @@ namespace Assets.Scripts.Player
         public void TakeDamage(float damage)
         {
             Health -= damage;
+
+            healthBar.SetHealth(Health);
+
             if (!(Health <= 0)) return;
             Destroy(gameObject);
-            DeathText.gameObject.SetActive(true);
-
-            StartCoroutine(RestartGame());
+            SceneManager.LoadScene(2);
         }
 
-        private IEnumerator RestartGame()
-        {
-            yield return new WaitForSeconds(3);
-            // Restart the game.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        
     }
 }
