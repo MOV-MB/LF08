@@ -30,7 +30,8 @@ namespace Assets.Scripts.Player
 
         private void Start()
         {
-            
+            _playerStatsManager = new PlayerStatsManager();
+
             Enemy.OnDeath += OnEnemyDeath;
             _playerRigidbody = GetComponent<Rigidbody2D>();
         }
@@ -101,7 +102,8 @@ namespace Assets.Scripts.Player
 
         private void OnEnemyDeath(int enemyId)
         {
-            _playerStats.AddKill(enemyId);
+            _playerStatsManager._playerStats.IncrementKillCount();
+            Debug.Log(_playerStatsManager._playerStats.KillCount);
         }
 
     }

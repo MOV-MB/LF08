@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStatsManager 
 {
-    private PlayerStats _playerStats;
+    public PlayerStats _playerStats;
     //TODO: Find a way to make this work and implement the functionality from DatabaseHelper.cs and manage the PlayerStats variables
     public PlayerStatsManager()
     {
