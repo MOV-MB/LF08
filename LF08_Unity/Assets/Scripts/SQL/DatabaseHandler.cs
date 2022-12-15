@@ -9,37 +9,35 @@ public class DatabaseHandler : MonoBehaviour
     // https://www.mono-project.com/docs/database-access/providers/sqlite/
 
     [SerializeField] private int _goldCount = 0;
-    private readonly string _path = "URI=file:" + Application.dataPath + "/Database/Database.db"; // Path to database.
+    private readonly string _path = "URI=file:" + Application.dataPath + "/Database/Database.db"; 
 
-    void Start() // 13
+    void Start() 
     {
-        // Read all values from the table.
-        IDbConnection dbConnection = CreateAndOpenDatabase(); // 14
-        IDbCommand dbCommandReadValues = dbConnection.CreateCommand(); // 15
-        dbCommandReadValues.CommandText = "SELECT * FROM HitCountTableSimple"; // 16
-        IDataReader dataReader = dbCommandReadValues.ExecuteReader(); // 17
+        IDbConnection dbConnection = CreateAndOpenDatabase();
+        IDbCommand dbCommandReadValues = dbConnection.CreateCommand(); 
+        dbCommandReadValues.CommandText = "SELECT * FROM HitCountTableSimple"; 
+        IDataReader dataReader = dbCommandReadValues.ExecuteReader(); 
 
-        while (dataReader.Read()) // 18
+        while (dataReader.Read()) 
         {
-            // The `id` has index 0, our `hits` have the index 1.
-            _goldCount = dataReader.GetInt32(1); // 19
+            _goldCount = dataReader.GetInt32(1); 
         }
 
-        // Remember to always close the connection at the end.
-        dbConnection.Close(); // 20
+        dbConnection.Close(); 
     }
 
-    private IDbConnection CreateAndOpenDatabase() // 3
+    //
+    
+    private IDbConnection CreateAndOpenDatabase()
     {
         // Open a connection to the database.
-        IDbConnection dbConnection = new SqliteConnection(_path); // 5
+        IDbConnection dbConnection = new SqliteConnection(_path); 
         dbConnection.Open(); // 6
 
-        // Create a table for the hit count in the database if it does not exist yet.
-        IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); // 6
+        // Create a table for the gold count in the database if it does not exist yet.
+        IDbCommand dbCommandCreateTable = dbConnection.CreateCommand(); 
         dbCommandCreateTable.CommandText = "CREATE TABLE IF NOT EXISTS HitCountTableSimple (id INTEGER PRIMARY KEY, hits INTEGER )"; // 7
         dbCommandCreateTable.ExecuteReader(); // 8
-        Animator animator = GetComponent<Animator>();
         return dbConnection;
     }
 }
