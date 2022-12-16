@@ -7193,12 +7193,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  spiderInterval: 3.5
   purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  purpleAlienInterval: 10
   alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
-  alien1Interval: 20
   spawner: {fileID: 691959086}
+  interval: 5
+  poolSize: 10
 --- !u!4 &691959088
 Transform:
   m_ObjectHideFlags: 0
@@ -12132,12 +12131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  spiderInterval: 3.5
   purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  purpleAlienInterval: 10
   alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
-  alien1Interval: 20
   spawner: {fileID: 746776008}
+  interval: 5
+  poolSize: 10
 --- !u!4 &746776010
 Transform:
   m_ObjectHideFlags: 0
@@ -27017,12 +27015,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  spiderInterval: 3.5
   purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  purpleAlienInterval: 10
   alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
-  alien1Interval: 20
   spawner: {fileID: 1134596634}
+  interval: 5
+  poolSize: 10
 --- !u!4 &1134596636
 Transform:
   m_ObjectHideFlags: 0
@@ -32126,6 +32123,7 @@ MonoBehaviour:
   deathScreen: {fileID: 139114833}
   easeOnDeath: 0
   godMode: 0
+  canMove: 1
 --- !u!1 &1246881520
 GameObject:
   m_ObjectHideFlags: 0
@@ -32994,12 +32992,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  spiderInterval: 3.5
   purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  purpleAlienInterval: 10
   alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
-  alien1Interval: 20
   spawner: {fileID: 1428026585}
+  interval: 5
+  poolSize: 10
 --- !u!4 &1428026587
 Transform:
   m_ObjectHideFlags: 0
@@ -33566,8 +33563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6247b05a26cff40b22ba1a03db36af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedMusic: gameMusic
-  player: {fileID: 1212947625}
+  selectedMusic: gameMusic
 --- !u!1 &1733343534
 GameObject:
   m_ObjectHideFlags: 0
