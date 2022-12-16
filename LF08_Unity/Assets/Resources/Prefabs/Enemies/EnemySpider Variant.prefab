@@ -45,20 +45,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: Damage
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-      propertyPath: Health
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      propertyPath: Health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: itemList.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: itemList.Array.data[0]
       value: 
-      objectReference: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      objectReference: {fileID: 6498973288103791465, guid: 206fb93f37f65c845ba8aba332033058, type: 3}
+    - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      propertyPath: itemList.Array.data[1]
+      value: 
+      objectReference: {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
+    - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      propertyPath: itemList.Array.data[2]
+      value: 
+      objectReference: {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
     - target: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: m_Name
       value: EnemySpider Variant
@@ -125,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8000189944604515398, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000189944604515398, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9602326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000189944604515398, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: m_LocalPosition.z
