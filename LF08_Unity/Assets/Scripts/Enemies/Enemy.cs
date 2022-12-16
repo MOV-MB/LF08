@@ -15,7 +15,7 @@ namespace Assets.Scripts.Enemies
         protected Vector2 Movement;
 
         // The speed at which the enemy moves
-        public float MoveSpeed = 5f;
+        // public float MoveSpeed = 5f;
 
         // The Rigidbody2D component attached to the enemy game object
         protected Rigidbody2D Rb;
