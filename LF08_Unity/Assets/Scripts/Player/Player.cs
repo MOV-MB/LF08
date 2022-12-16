@@ -95,8 +95,7 @@ namespace Assets.Scripts.Player
 
             healthBar.SetHealth(Health);
 
-            if (!(Health <= 0)) return;
-            Destroy(gameObject);
+            if (Health > 0) return;
             SceneManager.LoadScene(2);
         }
 
