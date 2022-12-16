@@ -73,7 +73,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 35
   Health: 30
-  MoveSpeed: 5
+  itemList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6052744867257407547
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -75,6 +75,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 40
   Health: 40
+  itemList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &504084024309146984
 MonoBehaviour:
   m_ObjectHideFlags: 0

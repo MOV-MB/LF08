@@ -16,6 +16,7 @@ namespace Assets.Scripts.Player
         public float Firerate = 0.5f;
         public float MoveSpeed = 10f;
         public float Health = 100f;
+        public int Money = 0;
 
         private Rigidbody2D _playerRigidbody;
         public Camera Cam;
@@ -105,5 +106,10 @@ namespace Assets.Scripts.Player
             Debug.Log(_playerStatsManager._playerStats.KillCount);
         }
 
+        public void IncrementMoney()
+        {
+            Money++;
+            Debug.Log("Money:" + Money);
+        }
     }
 }

@@ -25,10 +25,19 @@ namespace Assets.Scripts.Enemies
 
         private const string enemyMeleeSoundName = "meleeEnemy";
 
+
+        //Money drop
+        [SerializeField]
+        private GameObject[] itemList; // Stores the game items
+        private int itemNum; // Selects a number to choose from the itemList
+        private int randNum; // chooses a random number to see if loot os dropped- Loot chance
+        private Transform Epos; // enemy position
+
         private void Start()
         {
             // Get the Rigidbody2D component attached to the enemy game object
             Rb = GetComponent<Rigidbody2D>();
+            Epos = GetComponent<Transform>();
             _player = GameObject.Find("Player");
         }
 
@@ -62,39 +71,35 @@ namespace Assets.Scripts.Enemies
             if (!(Health <= 0)) return;
             OnEnemyDeath();
             Destroy(gameObject);
-
         }
 
         public virtual void OnEnemyDeath()
         {
             OnDeath?.Invoke(gameObject.GetInstanceID());
+            DropItem();
         }
 
-        /*
-        protected virtual void UpdateMovement()
+        public void DropItem()
         {
-            // Check if the player is still alive
-            if (!GameObject.FindWithTag("Player"))
-                return;
+            randNum = Random.Range(0, 101); // 100% total for determining loot chance;
+            Debug.Log("Random Number is " + randNum);
 
-            // Get the position of the player game object
-            Vector2 playerPosition = GameObject.FindWithTag("Player").transform.position;
-
-
-            // Calculate the direction in which the enemy should move to reach the player
-            Vector2 direction = (playerPosition - Rb.position).normalized;
-
-            // face player
-            transform.up = direction;
-
-            // Check if the movement direction is in front of the enemy
-            if (Vector2.Dot(direction, transform.right) > 0)
-                Movement = direction;
-
-            Rb.MovePosition(Rb.position + MoveSpeed * Time.fixedDeltaTime * Movement);
+            if (randNum >= 90) //super rare drop
+            {
+                itemNum = 2;
+                Instantiate(itemList[itemNum], Epos.position, Quaternion.identity);
+            }
+            else if (randNum >= 75) //rare drop
+            {
+                itemNum = 1;
+                Instantiate(itemList[itemNum], Epos.position, Quaternion.identity);
+            }
+            else if (randNum >= 25) //common drop
+            {
+                itemNum = 0;
+                Instantiate(itemList[itemNum], Epos.position, Quaternion.identity);
+            }
+            else return; //no drop
         }
-        */
-        
-        
     }
 }

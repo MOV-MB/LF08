@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2771757046744094035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -55, y: 0.9602326, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8311773381777801531}
@@ -95,7 +95,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   Health: 10
-  MoveSpeed: 5
+  itemList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2634499429314042192
 MonoBehaviour:
   m_ObjectHideFlags: 0
