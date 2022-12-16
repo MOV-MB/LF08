@@ -109,11 +109,9 @@ namespace Assets.Scripts.Player
             AudioManager.main.PlaySFX("HurtSound/" + PickHurtSound());
             healthBar.SetHealth(Health);
 
-            if(!godMode)
-            {
-                if (Health > 0) return;
-                StartCoroutine(deathTime());
-            }
+            if (godMode) return;
+            if (Health > 0) return;
+            StartCoroutine(deathTime());
         }
 
         private void OnEnemyDeath(int enemyId)
