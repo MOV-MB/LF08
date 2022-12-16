@@ -74,7 +74,7 @@ namespace Assets.Scripts.Player
 
         private void UpdatePlayerMovement()
         {
-            _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement);
+            _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement.normalized);
         }
 
         private void UpdatePlayerRotation()
