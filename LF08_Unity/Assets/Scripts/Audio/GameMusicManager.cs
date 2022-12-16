@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Player;
 
-public class MusicManager : MonoBehaviour
+public class GameMusicManager : MonoBehaviour
 {
     public string selectedMusic;
     private Player player;

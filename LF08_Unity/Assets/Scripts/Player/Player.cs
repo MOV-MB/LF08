@@ -33,6 +33,8 @@ namespace Assets.Scripts.Player
         public LeanTweenType easeOnDeath;
 
         public bool godMode = false;
+        public bool canMove = true;
+        private Color deathScreenColor;
 
         private void Start()
         {
@@ -57,15 +59,18 @@ namespace Assets.Scripts.Player
 
         private void HandlePlayerInput()
         {
-            if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
+            if (canMove)
             {
-                Shoot();
+                if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
+                {
+                    Shoot();
+                }
+
+                _movement.x = Input.GetAxisRaw("Horizontal");
+                _movement.y = Input.GetAxisRaw("Vertical");
+
+                _mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
             }
-
-            _movement.x = Input.GetAxisRaw("Horizontal");
-            _movement.y = Input.GetAxisRaw("Vertical");
-
-            _mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
         }
 
         private void Shoot()
@@ -137,16 +142,25 @@ namespace Assets.Scripts.Player
         
         private IEnumerator deathTime()
         {
-            deathScreen.SetActive(true);
-            Time.timeScale = 0.25f;
-            float alpha = deathScreen.GetComponent<Image>().color.a;
-            LeanTween.value(0f, 200f, 3f)
-                     .setOnUpdate((float val) => { alpha = val; })
-                     .setEase(easeOnDeath);
-            LeanTween.value(Cam.orthographicSize, 0.5f, 1f)
-                     .setOnUpdate((float val) => { Cam.orthographicSize = val; })
-                     .setEase(easeOnDeath);
-            yield return new WaitForSecondsRealtime(3f);
+                canMove = false;
+                deathScreen.SetActive(true);
+                Time.timeScale = 0.25f;
+                deathScreenColor = deathScreen.GetComponent<Image>().color;
+                
+                LeanTween.value(0f, 1f, 3f)
+                         .setOnUpdate((float val) => 
+                         { 
+                             deathScreenColor.a = val;
+                             deathScreen.GetComponent<Image>().color = deathScreenColor;
+                         });
+
+                LeanTween.value(Cam.orthographicSize, 2f, 1f)
+                         .setOnUpdate((float val) => { Cam.orthographicSize = val; })
+                         .setEase(easeOnDeath);
+
+                yield return new WaitForSecondsRealtime(3f);
+
+            LeanTween.cancelAll();
             SceneManager.LoadScene(2);
         }
 
