@@ -55,7 +55,7 @@ namespace Assets.Scripts.Enemies
             _timeSinceLastHit += Time.deltaTime;
 
             // Check if at least one second has passed since the last hit
-            if (!(_timeSinceLastHit >= 1f)) return;
+            if (_timeSinceLastHit <= 1f) return;
             AudioManager.main.PlaySFX(enemyMeleeSoundName);
             _player.GetComponent<Player.Player>().TakeDamage(Damage);
             Debug.Log(collision.collider.name + " was hit!" + " Health: " +
@@ -68,7 +68,7 @@ namespace Assets.Scripts.Enemies
         public virtual void TakeDamage(float damage)
         {
             Health -= damage;
-            if (!(Health <= 0)) return;
+            if (Health > 0) return;
             OnEnemyDeath();
             Destroy(gameObject);
         }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class Healthbar : MonoBehaviour
 {
     public Slider healthSlider;
+    public GameObject bar;
+    public float timeToTween = 0.25f;
+    public LeanTweenType easeType;
 
     private void Start()
     {
@@ -13,9 +16,8 @@ public class Healthbar : MonoBehaviour
     }
     public void SetHealth(float health)
     {
-        if (health > 0) healthSlider.value = health / 100;
-        else healthSlider.value = 0;
-
-       Debug.Log("healthSlider value:" + healthSlider.value);
+        LeanTween.value(bar, healthSlider.value, health / 100, timeToTween)
+                 .setOnUpdate((float val)=> { healthSlider.value = val; })
+                 .setEase(easeType);
     }
 }

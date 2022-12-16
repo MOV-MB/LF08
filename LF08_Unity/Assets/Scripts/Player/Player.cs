@@ -29,6 +29,11 @@ namespace Assets.Scripts.Player
 
         public Healthbar healthBar;
 
+        public GameObject deathScreen;
+        public LeanTweenType easeOnDeath;
+
+        public bool godMode = false;
+
         private void Start()
         {
             _playerStatsManager = new PlayerStatsManager();
@@ -78,6 +83,13 @@ namespace Assets.Scripts.Player
             _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement.normalized);
         }
 
+        private string PickHurtSound()
+        {
+            Object[] hurtSounds = Resources.LoadAll("Audio/HurtSound/");
+            int randomSound = Random.Range(0, hurtSounds.Length);
+            return hurtSounds[randomSound].name;
+        }
+
         private void UpdatePlayerRotation()
         {
             Vector2 lookDirection = _mousePosition - _playerRigidbody.position;
@@ -93,11 +105,15 @@ namespace Assets.Scripts.Player
         public void TakeDamage(float damage)
         {
             Health -= damage;
-
+            StartCoroutine(colorChangeOnDamage());
+            AudioManager.main.PlaySFX("HurtSound/" + PickHurtSound());
             healthBar.SetHealth(Health);
 
-            if (Health > 0) return;
-            SceneManager.LoadScene(2);
+            if(!godMode)
+            {
+                if (Health > 0) return;
+                StartCoroutine(deathTime());
+            }
         }
 
         private void OnEnemyDeath(int enemyId)
@@ -117,6 +133,45 @@ namespace Assets.Scripts.Player
             if(Health < 100) Health += hp;
             healthBar.SetHealth(Health);
             Debug.Log("Added " + hp + " health");
+        }
+        
+        private IEnumerator deathTime()
+        {
+            deathScreen.SetActive(true);
+            Time.timeScale = 0.25f;
+            float alpha = deathScreen.GetComponent<Image>().color.a;
+            LeanTween.value(0f, 200f, 3f)
+                     .setOnUpdate((float val) => { alpha = val; })
+                     .setEase(easeOnDeath);
+            LeanTween.value(Cam.orthographicSize, 0.5f, 1f)
+                     .setOnUpdate((float val) => { Cam.orthographicSize = val; })
+                     .setEase(easeOnDeath);
+            yield return new WaitForSecondsRealtime(3f);
+            SceneManager.LoadScene(2);
+        }
+
+
+        private IEnumerator colorChangeOnDamage()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject child = transform.GetChild(i).gameObject;
+                if(child.TryGetComponent<SpriteRenderer>(out SpriteRenderer childSpriteRenderer))
+                {
+                    childSpriteRenderer.color = Color.red;
+                }
+            }
+
+            yield return new WaitForSeconds(0.25f);
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject child = transform.GetChild(i).gameObject;
+                if (child.TryGetComponent<SpriteRenderer>(out SpriteRenderer childSpriteRenderer))
+                {
+                    childSpriteRenderer.color = Color.white;
+                }
+            }
         }
     }
 }

@@ -627,6 +627,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 171496112}
+  bar: {fileID: 1860886670}
+  timeToTween: 0.25
+  easeType: 18
 --- !u!1 &176192203
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,7 +6788,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 1
   orthographic size: 5
   m_Depth: -1
@@ -31999,6 +32002,7 @@ MonoBehaviour:
   Money: 0
   Cam: {fileID: 633990314}
   healthBar: {fileID: 171496113}
+  godMode: 0
 --- !u!1 &1246881520
 GameObject:
   m_ObjectHideFlags: 0
