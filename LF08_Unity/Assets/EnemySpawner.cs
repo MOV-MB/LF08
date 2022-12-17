@@ -9,8 +9,11 @@ public class EnemySpawner : MonoBehaviour
     public GameObject alien1Prefab;
     public GameObject spawner;
 
-    public float interval = 5f;  // fixed interval for spawning enemies
-    public int poolSize = 10;    // size of the enemy pool
+    public float SpiderInterval = 5f;
+    public float PurpleAlienInterval = 10f;
+    public float Alien1Interval = 20f;
+    
+    public int PoolSize = 10;    // size of the enemy pool
 
     private Queue<GameObject> spiderPool;
     private Queue<GameObject> purpleAlienPool;
@@ -20,12 +23,12 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         // Initialize the enemy pools
-        spiderPool = new Queue<GameObject>(poolSize);
-        purpleAlienPool = new Queue<GameObject>(poolSize);
-        alien1Pool = new Queue<GameObject>(poolSize);
+        spiderPool = new Queue<GameObject>(PoolSize);
+        purpleAlienPool = new Queue<GameObject>(PoolSize);
+        alien1Pool = new Queue<GameObject>(PoolSize);
 
         // Fill the pools with inactive enemy prefabs
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < PoolSize; i++)
         {
             GameObject spider = Instantiate(spiderPrefab, Vector3.zero, Quaternion.identity);
             spider.SetActive(false);
@@ -41,12 +44,12 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // Start the enemy spawning coroutines
-        StartCoroutine(spawnEnemy(interval, spiderPool, spiderPrefab));
-        StartCoroutine(spawnEnemy(interval, purpleAlienPool, purpleAlienPrefab));
-        StartCoroutine(spawnEnemy(interval, alien1Pool, alien1Prefab));
+        StartCoroutine(SpawnEnemy(SpiderInterval, spiderPool, spiderPrefab));
+        StartCoroutine(SpawnEnemy(PurpleAlienInterval, purpleAlienPool, purpleAlienPrefab));
+        StartCoroutine(SpawnEnemy(Alien1Interval, alien1Pool, alien1Prefab));
     }
 
-    private IEnumerator spawnEnemy(float interval, Queue<GameObject> enemyPool, GameObject enemyPrefab)
+    private IEnumerator SpawnEnemy(float interval, Queue<GameObject> enemyPool, GameObject enemyPrefab)
     {
         yield return new WaitForSeconds(interval);
 
@@ -68,6 +71,6 @@ public class EnemySpawner : MonoBehaviour
         // Add the enemy back to the pool
         enemyPool.Enqueue(enemy);
 
-        StartCoroutine(spawnEnemy(interval, enemyPool, enemyPrefab));
+        StartCoroutine(SpawnEnemy(interval, enemyPool, enemyPrefab));
     }
 }
