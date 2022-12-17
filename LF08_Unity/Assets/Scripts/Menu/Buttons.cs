@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    private const string ButtonClickSoundName = "buttonClick";
+    private const string buttonClickSoundName = "buttonClick";
 
     public void PlayButtonClickAndSwitchScene(int index)
     {
-        AudioManager.main.PlaySFX(ButtonClickSoundName, callback: (sound) => SwitchScene(index));
+        AudioManager.main.PlaySFX(buttonClickSoundName, callback: (Sound) => SwitchScene(index));
     }
 
     public void PlayButtonClick()
     {
-        AudioManager.main.PlaySFX(ButtonClickSoundName);
+        AudioManager.main.PlaySFX(buttonClickSoundName);
     }
 
     public void SwitchScene(int index)

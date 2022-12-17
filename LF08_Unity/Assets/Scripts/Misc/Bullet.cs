@@ -8,10 +8,10 @@ namespace Assets.Scripts.Misc
         public GameObject HitEffect;
         private GameObject _enemy;
 
-        private const string BulletHitEnemySoundName = "bulletHitEnemy";
-        private const string BulletHitSoundName = "bulletHit";
+        private const string bulletHitEnemySoundName = "bulletHitEnemy";
+        private const string bulletHitSoundName = "bulletHit";
 
-        private void OnCollisionEnter2D(Collision2D collision2D)
+        private void OnCollisionEnter2D(Collision2D collider)
         {
         
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up);
@@ -19,19 +19,19 @@ namespace Assets.Scripts.Misc
             {
                 GameObject effect = Instantiate(HitEffect, hit.point, Quaternion.identity);
                 Destroy(effect, 0.5f);
-                AudioManager.main.PlaySFX(BulletHitSoundName);
+                AudioManager.main.PlaySFX(bulletHitSoundName);
             }
         
-            if (collision2D.collider.CompareTag("Enemy"))
+            if (collider.collider.CompareTag("Enemy"))
             {
                 // Get Enemy GameObject
-                _enemy = collision2D.gameObject;
+                _enemy = collider.gameObject;
                 _enemy.GetComponent<Enemy>().TakeDamage(10f);
                 Debug.Log(_enemy.name + " was hit!" + " Health: " + _enemy.GetComponent<Enemy>().Health);
-                AudioManager.main.PlaySFX(BulletHitEnemySoundName);
+                AudioManager.main.PlaySFX(bulletHitEnemySoundName);
             }
 
-            if (collision2D.collider.CompareTag("Tilemap"))
+            if (collider.collider.CompareTag("Tilemap"))
             {
                 Debug.Log("Hit Tilemap Edge Collider");
             

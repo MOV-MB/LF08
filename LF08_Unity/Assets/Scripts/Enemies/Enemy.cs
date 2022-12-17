@@ -23,21 +23,21 @@ namespace Assets.Scripts.Enemies
         private GameObject _player;
         private float _timeSinceLastHit = 1f;
 
-        private const string EnemyMeleeSoundName = "meleeEnemy";
+        private const string enemyMeleeSoundName = "meleeEnemy";
 
 
         //Money drop
         [SerializeField]
-        private GameObject[] _itemList; // Stores the game items
-        private int _itemNum; // Selects a number to choose from the itemList
-        private int _randNum; // chooses a random number to see if loot os dropped- Loot chance
-        private Transform _epos; // enemy position
+        private GameObject[] itemList; // Stores the game items
+        private int itemNum; // Selects a number to choose from the itemList
+        private int randNum; // chooses a random number to see if loot os dropped- Loot chance
+        private Transform Epos; // enemy position
 
         private void Start()
         {
             // Get the Rigidbody2D component attached to the enemy game object
             Rb = GetComponent<Rigidbody2D>();
-            _epos = GetComponent<Transform>();
+            Epos = GetComponent<Transform>();
             _player = GameObject.Find("Player");
         }
 
@@ -56,7 +56,7 @@ namespace Assets.Scripts.Enemies
 
             // Check if at least one second has passed since the last hit
             if (_timeSinceLastHit <= 1f) return;
-            AudioManager.main.PlaySFX(EnemyMeleeSoundName);
+            AudioManager.main.PlaySFX(enemyMeleeSoundName);
             _player.GetComponent<Player.Player>().TakeDamage(Damage);
             Debug.Log(collision.collider.name + " was hit!" + " Health: " +
                       collision.collider.GetComponent<Player.Player>().Health);
@@ -81,29 +81,25 @@ namespace Assets.Scripts.Enemies
 
         public void DropItem()
         {
-            _randNum = Random.Range(0, 101); // 100% total for determining loot chance;
-            Debug.Log("Random Number is " + _randNum);
+            randNum = Random.Range(0, 101); // 100% total for determining loot chance;
+            Debug.Log("Random Number is " + randNum);
 
-            switch (_randNum)
+            if (randNum >= 90) //super rare drop
             {
-                //super rare drop
-                case >= 90:
-                    _itemNum = 2;
-                    Instantiate(_itemList[_itemNum], _epos.position, Quaternion.identity);
-                    break;
-                //rare drop
-                case >= 75:
-                    _itemNum = 1;
-                    Instantiate(_itemList[_itemNum], _epos.position, Quaternion.identity);
-                    break;
-                //common drop
-                case >= 25:
-                    _itemNum = 0;
-                    Instantiate(_itemList[_itemNum], _epos.position, Quaternion.identity);
-                    break;
-                default:
-                    return; //no drop
+                itemNum = 2;
+                Instantiate(itemList[itemNum], Epos.position, Quaternion.identity);
             }
+            else if (randNum >= 75) //rare drop
+            {
+                itemNum = 1;
+                Instantiate(itemList[itemNum], Epos.position, Quaternion.identity);
+            }
+            else if (randNum >= 25) //common drop
+            {
+                itemNum = 0;
+                Instantiate(itemList[itemNum], Epos.position, Quaternion.identity);
+            }
+            else return; //no drop
         }
     }
 }

@@ -6698,58 +6698,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &517052495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 517052497}
-  - component: {fileID: 517052496}
-  m_Layer: 0
-  m_Name: EnemySpawner3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &517052496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517052495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
-  Spawner: {fileID: 517052495}
-  SpiderInterval: 5
-  PurpleAlienInterval: 10
-  Alien1Interval: 20
-  PoolSize: 10
---- !u!4 &517052497
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517052495}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.9, y: 4.41, z: -0.046594016}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &532881625
 GameObject:
   m_ObjectHideFlags: 0
@@ -7215,6 +7163,56 @@ Transform:
   m_Father: {fileID: 1197134225}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &691959086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691959088}
+  - component: {fileID: 691959087}
+  m_Layer: 0
+  m_Name: EnemySpawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &691959087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691959086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+  purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
+  alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
+  spawner: {fileID: 691959086}
+  interval: 5
+  poolSize: 10
+--- !u!4 &691959088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691959086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -75.41, y: -12.32, z: -0.046594016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704579621
 GameObject:
   m_ObjectHideFlags: 0
@@ -12103,6 +12101,56 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &746776008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746776010}
+  - component: {fileID: 746776009}
+  m_Layer: 0
+  m_Name: EnemySpawner4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &746776009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746776008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+  purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
+  alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
+  spawner: {fileID: 746776008}
+  interval: 5
+  poolSize: 10
+--- !u!4 &746776010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746776008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -92.01, y: -2.73, z: -0.046594016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &780324035
 GameObject:
   m_ObjectHideFlags: 0
@@ -26966,14 +27014,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
-  Spawner: {fileID: 1134596634}
-  SpiderInterval: 5
-  PurpleAlienInterval: 10
-  Alien1Interval: 20
-  PoolSize: 10
+  spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+  purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
+  alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
+  spawner: {fileID: 1134596634}
+  interval: 5
+  poolSize: 10
 --- !u!4 &1134596636
 Transform:
   m_ObjectHideFlags: 0
@@ -32073,11 +32119,11 @@ MonoBehaviour:
   Health: 100
   Money: 0
   Cam: {fileID: 633990314}
-  HealthBar: {fileID: 171496113}
-  DeathScreen: {fileID: 139114833}
-  EaseOnDeath: 0
-  GodMode: 0
-  CanMove: 1
+  healthBar: {fileID: 171496113}
+  deathScreen: {fileID: 139114833}
+  easeOnDeath: 0
+  godMode: 0
+  canMove: 1
 --- !u!1 &1246881520
 GameObject:
   m_ObjectHideFlags: 0
@@ -32916,6 +32962,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 340879621}
+--- !u!1 &1428026585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428026587}
+  - component: {fileID: 1428026586}
+  m_Layer: 0
+  m_Name: EnemySpawner3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1428026586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428026585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+  purpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
+  alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
+  spawner: {fileID: 1428026585}
+  interval: 5
+  poolSize: 10
+--- !u!4 &1428026587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428026585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -75.41, y: 4.99, z: -0.046594016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1477784049
 GameObject:
   m_ObjectHideFlags: 0
@@ -32961,7 +33057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fadb101700e8424797103e8697bc0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1320674958}
+  pauseMenuUI: {fileID: 0}
 --- !u!114 &1477784052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33467,7 +33563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6247b05a26cff40b22ba1a03db36af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedMusic: gameMusic
+  selectedMusic: gameMusic
 --- !u!1 &1733343534
 GameObject:
   m_ObjectHideFlags: 0
@@ -33709,110 +33805,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1840145737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1840145739}
-  - component: {fileID: 1840145738}
-  m_Layer: 0
-  m_Name: EnemySpawner2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1840145738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840145737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
-  Spawner: {fileID: 1840145737}
-  SpiderInterval: 5
-  PurpleAlienInterval: 10
-  Alien1Interval: 20
-  PoolSize: 10
---- !u!4 &1840145739
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840145737}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -75.69, y: -11.91, z: -0.046594016}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1860712400
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1860712402}
-  - component: {fileID: 1860712401}
-  m_Layer: 0
-  m_Name: EnemySpawner4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1860712401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860712400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0e46b91f4322a4e9dd0168a133a9ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
-  PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
-  Spawner: {fileID: 1860712400}
-  SpiderInterval: 5
-  PurpleAlienInterval: 10
-  Alien1Interval: 20
-  PoolSize: 10
---- !u!4 &1860712402
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860712400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -91.76, y: -3.06, z: -0.046594016}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1860886670
 GameObject:

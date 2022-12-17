@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject SpiderPrefab;
-    public GameObject PurpleAlienPrefab;
-    public GameObject Alien1Prefab;
-    public GameObject Spawner;
+    public GameObject spiderPrefab;
+    public GameObject purpleAlienPrefab;
+    public GameObject alien1Prefab;
+    public GameObject spawner;
 
     public float SpiderInterval = 5f;
     public float PurpleAlienInterval = 10f;
@@ -15,38 +15,38 @@ public class EnemySpawner : MonoBehaviour
     
     public int PoolSize = 10;    // size of the enemy pool
 
-    private Queue<GameObject> _spiderPool;
-    private Queue<GameObject> _purpleAlienPool;
-    private Queue<GameObject> _alien1Pool;
+    private Queue<GameObject> spiderPool;
+    private Queue<GameObject> purpleAlienPool;
+    private Queue<GameObject> alien1Pool;
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize the enemy pools
-        _spiderPool = new Queue<GameObject>(PoolSize);
-        _purpleAlienPool = new Queue<GameObject>(PoolSize);
-        _alien1Pool = new Queue<GameObject>(PoolSize);
+        spiderPool = new Queue<GameObject>(PoolSize);
+        purpleAlienPool = new Queue<GameObject>(PoolSize);
+        alien1Pool = new Queue<GameObject>(PoolSize);
 
         // Fill the pools with inactive enemy prefabs
         for (int i = 0; i < PoolSize; i++)
         {
-            GameObject spider = Instantiate(SpiderPrefab, Vector3.zero, Quaternion.identity);
+            GameObject spider = Instantiate(spiderPrefab, Vector3.zero, Quaternion.identity);
             spider.SetActive(false);
-            _spiderPool.Enqueue(spider);
+            spiderPool.Enqueue(spider);
 
-            GameObject purpleAlien = Instantiate(PurpleAlienPrefab, Vector3.zero, Quaternion.identity);
+            GameObject purpleAlien = Instantiate(purpleAlienPrefab, Vector3.zero, Quaternion.identity);
             purpleAlien.SetActive(false);
-            _purpleAlienPool.Enqueue(purpleAlien);
+            purpleAlienPool.Enqueue(purpleAlien);
 
-            GameObject alien1 = Instantiate(Alien1Prefab, Vector3.zero, Quaternion.identity);
+            GameObject alien1 = Instantiate(alien1Prefab, Vector3.zero, Quaternion.identity);
             alien1.SetActive(false);
-            _alien1Pool.Enqueue(alien1);
+            alien1Pool.Enqueue(alien1);
         }
 
         // Start the enemy spawning coroutines
-        StartCoroutine(SpawnEnemy(SpiderInterval, _spiderPool, SpiderPrefab));
-        StartCoroutine(SpawnEnemy(PurpleAlienInterval, _purpleAlienPool, PurpleAlienPrefab));
-        StartCoroutine(SpawnEnemy(Alien1Interval, _alien1Pool, Alien1Prefab));
+        StartCoroutine(SpawnEnemy(SpiderInterval, spiderPool, spiderPrefab));
+        StartCoroutine(SpawnEnemy(PurpleAlienInterval, purpleAlienPool, purpleAlienPrefab));
+        StartCoroutine(SpawnEnemy(Alien1Interval, alien1Pool, alien1Prefab));
     }
 
     private IEnumerator SpawnEnemy(float interval, Queue<GameObject> enemyPool, GameObject enemyPrefab)
@@ -63,8 +63,8 @@ public class EnemySpawner : MonoBehaviour
         }
 
         // Set the enemy's position and activate it
-        enemy.transform.position = new Vector3(Random.Range(Spawner.transform.position.x - 1f, Spawner.transform.position.x + 1f),
-                                               Random.Range(Spawner.transform.position.y - 1f, Spawner.transform.position.y + 1f),
+        enemy.transform.position = new Vector3(Random.Range(spawner.transform.position.x - 1f, spawner.transform.position.x + 1f),
+                                               Random.Range(spawner.transform.position.y - 1f, spawner.transform.position.y + 1f),
                                                0f);
         enemy.SetActive(true);
 

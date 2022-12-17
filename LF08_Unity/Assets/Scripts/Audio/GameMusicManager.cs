@@ -6,33 +6,34 @@ using Assets.Scripts.Player;
 
 public class GameMusicManager : MonoBehaviour
 {
-    public string SelectedMusic;
-    private Player _player;
+    public string selectedMusic;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.main.PlayMusic(SelectedMusic, true);
-        _player = GameObject.Find("Player").GetComponent<Player>();
+        AudioManager.main.PlayMusic(selectedMusic, true);
+        player = GameObject.Find("Player").gameObject.GetComponent<Player>();
     }
 
     void Update()
     {
-        switch (PauseMenu.isGamePaused)
+        if (PauseMenu.isGamePaused)
         {
-            case true:
-                AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
-                AudioManager.main.currentMusic.source.pitch = 0.85f;
-                break;
-            case false:
-                AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 22000f);
-                AudioManager.main.currentMusic.source.pitch = 1f;
-                break;
+            AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
+            AudioManager.main.currentMusic.source.pitch = 0.85f;
+        }
+        else if(!PauseMenu.isGamePaused)
+        {
+            AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 22000f);
+            AudioManager.main.currentMusic.source.pitch = 1f;
         }
 
-        if (!(_player.Health < 0) || _player == null) return;
-        AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
-        AudioManager.main.effects.audioMixer.SetFloat("cutOffFreq", 1500f);
-        AudioManager.main.effects.audioMixer.SetFloat("effectsPitch", 0.65f);
+        if(player.Health < 0 && player != null)
+        {
+            AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
+            AudioManager.main.effects.audioMixer.SetFloat("cutOffFreq", 1500f);
+            AudioManager.main.effects.audioMixer.SetFloat("effectsPitch", 0.65f);
+        }
     }
 }
