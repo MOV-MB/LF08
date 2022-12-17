@@ -27,13 +27,12 @@ namespace Assets.Scripts.Player
 
         private const string playerShootingSoundName = "playerShoot";
 
-        public Healthbar healthBar;
+        public Healthbar HealthBar;
 
         public GameObject deathScreen;
-        public LeanTweenType easeOnDeath;
 
-        public bool godMode = false;
-        public bool canMove = true;
+        public bool GodMode = false;
+        public bool CanMove = true;
         private Color deathScreenColor;
 
         private void Start()
@@ -59,7 +58,7 @@ namespace Assets.Scripts.Player
 
         private void HandlePlayerInput()
         {
-            if (canMove)
+            if (CanMove)
             {
                 if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
                 {
@@ -112,9 +111,9 @@ namespace Assets.Scripts.Player
             Health -= damage;
             StartCoroutine(colorChangeOnDamage());
             AudioManager.main.PlaySFX("HurtSound/" + PickHurtSound());
-            healthBar.SetHealth(Health);
+            HealthBar.SetHealth(Health);
 
-            if (godMode) return;
+            if (GodMode) return;
             if (Health > 0) return;
             StartCoroutine(deathTime());
         }
@@ -134,13 +133,13 @@ namespace Assets.Scripts.Player
         public void AddHealth(float hp)
         {
             if(Health < 100) Health += hp;
-            healthBar.SetHealth(Health);
+            HealthBar.SetHealth(Health);
             Debug.Log("Added " + hp + " health");
         }
         
         private IEnumerator deathTime()
         {
-                canMove = false;
+                CanMove = false;
                 deathScreen.SetActive(true);
                 Time.timeScale = 0.25f;
                 deathScreenColor = deathScreen.GetComponent<Image>().color;
