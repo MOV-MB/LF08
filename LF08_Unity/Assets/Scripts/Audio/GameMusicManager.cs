@@ -6,34 +6,33 @@ using Assets.Scripts.Player;
 
 public class GameMusicManager : MonoBehaviour
 {
-    public string selectedMusic;
-    private Player player;
+    public string SelectedMusic;
+    private Player _player;
 
     // Start is called before the first frame update
     void Start()
     {
-        AudioManager.main.PlayMusic(selectedMusic, true);
-        player = GameObject.Find("Player").gameObject.GetComponent<Player>();
+        AudioManager.main.PlayMusic(SelectedMusic, true);
+        _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     void Update()
     {
-        if (PauseMenu.isGamePaused)
+        switch (PauseMenu.isGamePaused)
         {
-            AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
-            AudioManager.main.currentMusic.source.pitch = 0.85f;
-        }
-        else if(!PauseMenu.isGamePaused)
-        {
-            AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 22000f);
-            AudioManager.main.currentMusic.source.pitch = 1f;
+            case true:
+                AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
+                AudioManager.main.currentMusic.source.pitch = 0.85f;
+                break;
+            case false:
+                AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 22000f);
+                AudioManager.main.currentMusic.source.pitch = 1f;
+                break;
         }
 
-        if(player.Health < 0 && player != null)
-        {
-            AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
-            AudioManager.main.effects.audioMixer.SetFloat("cutOffFreq", 1500f);
-            AudioManager.main.effects.audioMixer.SetFloat("effectsPitch", 0.65f);
-        }
+        if (!(_player.Health < 0) || _player == null) return;
+        AudioManager.main.music.audioMixer.SetFloat("cutoffFreq", 1500f);
+        AudioManager.main.effects.audioMixer.SetFloat("cutOffFreq", 1500f);
+        AudioManager.main.effects.audioMixer.SetFloat("effectsPitch", 0.65f);
     }
 }

@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 35
   Health: 30
-  itemList:
+  _itemList:
   - {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
   - {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
   - {fileID: 274134897980244414, guid: 37749e4a53a4ce74c82a0ae318aba13b, type: 3}
