@@ -32068,7 +32068,7 @@ MonoBehaviour:
   ShootingPoint: {fileID: 1537252597}
   BulletPrefab: {fileID: 6814790254321090814, guid: e70db916c90dfbf478bb979b46fe9388, type: 3}
   BulletForce: 30
-  Firerate: 0.9
+  Firerate: 0.3
   MoveSpeed: 8.5
   Health: 100
   Money: 0
