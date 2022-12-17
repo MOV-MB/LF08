@@ -36,7 +36,7 @@ public class PickUp : MonoBehaviour
 
             else if (this.name.Contains("Heart"))
             {
-                hp = 10;
+                hp = 20;
                 player.AddHealth(hp);
                 AudioManager.main.PlaySFX(healthPickupSoundName);
             }
