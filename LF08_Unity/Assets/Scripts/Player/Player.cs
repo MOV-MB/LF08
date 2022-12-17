@@ -156,6 +156,8 @@ namespace Assets.Scripts.Player
                 yield return new WaitForSecondsRealtime(3f);
 
             LeanTween.cancelAll();
+            AudioManager.main.effects.audioMixer.SetFloat("cutOffFreq", 22000f);
+            AudioManager.main.effects.audioMixer.SetFloat("effectsPitch", 1f);
             SceneManager.LoadScene(2);
         }
 

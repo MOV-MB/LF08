@@ -14,8 +14,6 @@ public class GameMusicManager : MonoBehaviour
     {
         AudioManager.main.PlayMusic(SelectedMusic, true);
         _player = GameObject.Find("Player").GetComponent<Player>();
-        AudioManager.main.effects.audioMixer.SetFloat("cutOffFreq", 22000f);
-        AudioManager.main.effects.audioMixer.SetFloat("effectsPitch", 1f);
     }
 
     void Update()
