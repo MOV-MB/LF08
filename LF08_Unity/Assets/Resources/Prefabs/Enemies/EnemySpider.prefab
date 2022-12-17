@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 10
   Health: 10
-  itemList:
+  _itemList:
   - {fileID: 3321191117044303765, guid: b09a377ceb6052e44922b7951cd8e17e, type: 3}
   - {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
   - {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}

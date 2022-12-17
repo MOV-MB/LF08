@@ -10,7 +10,6 @@ namespace Assets.Scripts.Player
     {
         public Transform ShootingPoint;
         public GameObject BulletPrefab;
-        private PlayerStatsManager _playerStatsManager;
 
         public float BulletForce = 30f;
         public float Firerate = 0.5f;
@@ -25,21 +24,19 @@ namespace Assets.Scripts.Player
         private Vector2 _mousePosition;
         private float _nextfire;
 
-        private const string playerShootingSoundName = "playerShoot";
+        private const string PlayerShootingSoundName = "playerShoot";
 
-        public Healthbar healthBar;
+        public Healthbar HealthBar;
 
-        public GameObject deathScreen;
-        public LeanTweenType easeOnDeath;
+        public GameObject DeathScreen;
+        public LeanTweenType EaseOnDeath;
 
-        public bool godMode = false;
-        public bool canMove = true;
-        private Color deathScreenColor;
+        public bool GodMode = false;
+        public bool CanMove = true;
+        private Color _deathScreenColor;
 
         private void Start()
         {
-            _playerStatsManager = new PlayerStatsManager();
-
             Enemy.OnDeath += OnEnemyDeath;
             _playerRigidbody = GetComponent<Rigidbody2D>();
         }
@@ -59,18 +56,17 @@ namespace Assets.Scripts.Player
 
         private void HandlePlayerInput()
         {
-            if (canMove)
+            if (!CanMove) return;
+
+            if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
             {
-                if (Input.GetButton("Fire1") && !PauseMenu.isGamePaused)
-                {
-                    Shoot();
-                }
-
-                _movement.x = Input.GetAxisRaw("Horizontal");
-                _movement.y = Input.GetAxisRaw("Vertical");
-
-                _mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
+                Shoot();
             }
+
+            _movement.x = Input.GetAxisRaw("Horizontal");
+            _movement.y = Input.GetAxisRaw("Vertical");
+
+            _mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
         }
 
         private void Shoot()
@@ -80,7 +76,7 @@ namespace Assets.Scripts.Player
             GameObject bullet = Instantiate(BulletPrefab, ShootingPoint.position, ShootingPoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(transform.TransformDirection(Vector2.up) * BulletForce, ForceMode2D.Impulse);
-            AudioManager.main.PlaySFX(playerShootingSoundName);
+            AudioManager.main.PlaySFX(PlayerShootingSoundName);
         }
 
         private void UpdatePlayerMovement()
@@ -88,7 +84,7 @@ namespace Assets.Scripts.Player
             _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement.normalized);
         }
 
-        private string PickHurtSound()
+        private static string PickHurtSound()
         {
             Object[] hurtSounds = Resources.LoadAll("Audio/HurtSound/");
             int randomSound = Random.Range(0, hurtSounds.Length);
@@ -112,17 +108,18 @@ namespace Assets.Scripts.Player
             Health -= damage;
             StartCoroutine(colorChangeOnDamage());
             AudioManager.main.PlaySFX("HurtSound/" + PickHurtSound());
-            healthBar.SetHealth(Health);
+            HealthBar.SetHealth(Health);
 
-            if (godMode) return;
+            if (GodMode) return;
             if (Health > 0) return;
-            StartCoroutine(deathTime());
+            StartCoroutine(DeathTime());
         }
 
         private void OnEnemyDeath(int enemyId)
-        {
-            _playerStatsManager._playerStats.IncrementKillCount();
-            Debug.Log(_playerStatsManager._playerStats.KillCount);
+        { 
+            PlayerStatsManager.Instance.PlayerStats.IncrementKillCount();
+
+            Debug.Log("Kills: "+ PlayerStatsManager.Instance.PlayerStats.KillCount);
         }
 
         public void AddMoney(ulong amount)
@@ -134,27 +131,27 @@ namespace Assets.Scripts.Player
         public void AddHealth(float hp)
         {
             if(Health < 100) Health += hp;
-            healthBar.SetHealth(Health);
+            HealthBar.SetHealth(Health);
             Debug.Log("Added " + hp + " health");
         }
         
-        private IEnumerator deathTime()
+        private IEnumerator DeathTime()
         {
-                canMove = false;
-                deathScreen.SetActive(true);
+                CanMove = false;
+                DeathScreen.SetActive(true);
                 Time.timeScale = 0.25f;
-                deathScreenColor = deathScreen.GetComponent<Image>().color;
+                _deathScreenColor = DeathScreen.GetComponent<Image>().color;
                 
                 LeanTween.value(0f, 1f, 3f)
-                         .setOnUpdate((float val) => 
+                         .setOnUpdate(val => 
                          { 
-                             deathScreenColor.a = val;
-                             deathScreen.GetComponent<Image>().color = deathScreenColor;
+                             _deathScreenColor.a = val;
+                             DeathScreen.GetComponent<Image>().color = _deathScreenColor;
                          });
 
                 LeanTween.value(Cam.orthographicSize, 2f, 1f)
-                         .setOnUpdate((float val) => { Cam.orthographicSize = val; })
-                         .setEase(easeOnDeath);
+                         .setOnUpdate(val => { Cam.orthographicSize = val; })
+                         .setEase(EaseOnDeath);
 
                 yield return new WaitForSecondsRealtime(3f);
 
@@ -168,7 +165,7 @@ namespace Assets.Scripts.Player
             for (int i = 0; i < transform.childCount; i++)
             {
                 GameObject child = transform.GetChild(i).gameObject;
-                if(child.TryGetComponent<SpriteRenderer>(out SpriteRenderer childSpriteRenderer))
+                if(child.TryGetComponent(out SpriteRenderer childSpriteRenderer))
                 {
                     childSpriteRenderer.color = Color.red;
                 }
@@ -179,7 +176,7 @@ namespace Assets.Scripts.Player
             for (int i = 0; i < transform.childCount; i++)
             {
                 GameObject child = transform.GetChild(i).gameObject;
-                if (child.TryGetComponent<SpriteRenderer>(out SpriteRenderer childSpriteRenderer))
+                if (child.TryGetComponent(out SpriteRenderer childSpriteRenderer))
                 {
                     childSpriteRenderer.color = Color.white;
                 }

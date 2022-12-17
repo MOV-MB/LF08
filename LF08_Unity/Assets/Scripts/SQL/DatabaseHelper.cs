@@ -1,6 +1,7 @@
 using Mono.Data.Sqlite;
 using System.Data;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -27,11 +28,8 @@ public class DatabaseHelper : MonoBehaviour
         Debug.Log(_pathDB);
 
         CreateDBFile();
-
         IDbConnection dbConnection = CreateDbConnection();
-
         CreateTables(dbConnection);
-        //InsertData(dbConnection);
         dbConnection.Close();
     }
 
@@ -48,24 +46,9 @@ public class DatabaseHelper : MonoBehaviour
     {
         if (dbConnection == null) return;
 
-
-        Action<IDataReader, string> processData = (reader, tableNameDbCheck) =>
-        {
-            if (reader.Read())
-            {
-                reader.GetString(0);
-                
-            }
-        };
-        
-
-
-
         IDbCommand createTablesCommand = dbConnection.CreateCommand();
         Debug.Log("Running CreateTables");
         createTablesCommand.CommandText = @"
-        DROP TABLE IF EXISTS PLAYER;
-        DROP TABLE IF EXISTS PLAYER_STATS;
 
         CREATE TABLE PLAYER (
             ID          INTEGER   NOT NULL
@@ -81,30 +64,45 @@ public class DatabaseHelper : MonoBehaviour
             DEATH_COUNT INTEGER
         );
         ";
-        createTablesCommand.ExecuteReader();
+
+        try
+        {
+            createTablesCommand.ExecuteReader();
+        }
+        catch (SqliteException sqliteException)
+        {
+            Debug.Log("Tables are already initialized Skipping...");
+        }
+        
     }
 
     private static IDbConnection CreateDbConnection()
     {
         Debug.Log("Establishing connection...");
-        IDbConnection dbConnection = new SqliteConnection(_pathDB);
+        IDbConnection dbConnection = new SqliteConnection(_devPathDB);
         dbConnection.Open();
         Debug.Log("Connection established");
 
         return dbConnection;
     }
 
-    public static void ProcessSelectStatement<T>(string query, Action<IDataReader, T> processData)
+    public static List<T> ProcessSelectStatement<T>(string query, Func<IDataReader, T> mapData)
     {
         IDbConnection dbConnection = CreateDbConnection();
         IDbCommand dbCommand = dbConnection.CreateCommand();
         dbCommand.CommandText = query;
         IDataReader dataReader = dbCommand.ExecuteReader();
 
-        T obj = Activator.CreateInstance<T>();
-        while (dataReader.Read()) processData(dataReader, obj);
+        List<T> results = new();
+
+        while (dataReader.Read())
+        {
+            T obj = mapData(dataReader);
+            results.Add(obj);
+        }
 
         dbConnection.Close();
+        return results;
     }
 
     public static void ProcessInsertStatement<T>(string query, T obj)
@@ -117,7 +115,7 @@ public class DatabaseHelper : MonoBehaviour
         foreach (PropertyInfo property in obj.GetType().GetProperties())
         {
             IDbDataParameter parameter = dbCommand.CreateParameter();
-            parameter.ParameterName = property.Name;
+            parameter.ParameterName = "@" + property.Name;
             parameter.Value = property.GetValue(obj);
             dbCommand.Parameters.Add(parameter);
         }
@@ -127,7 +125,6 @@ public class DatabaseHelper : MonoBehaviour
 
         dbConnection.Close();
     }
-
     public static void ProcessUpdateStatement<T>(string query, T obj)
     {
         IDbConnection dbConnection = CreateDbConnection();
@@ -138,7 +135,7 @@ public class DatabaseHelper : MonoBehaviour
         foreach (PropertyInfo property in obj.GetType().GetProperties())
         {
             IDbDataParameter parameter = dbCommand.CreateParameter();
-            parameter.ParameterName = property.Name;
+            parameter.ParameterName = "@" + property.Name;
             parameter.Value = property.GetValue(obj);
             dbCommand.Parameters.Add(parameter);
         }
@@ -148,4 +145,6 @@ public class DatabaseHelper : MonoBehaviour
 
         dbConnection.Close();
     }
+
+    
 }
