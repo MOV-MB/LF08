@@ -6729,7 +6729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 517052495}
   SpiderInterval: 5
   PurpleAlienInterval: 10
@@ -26968,7 +26968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 1134596634}
   SpiderInterval: 5
   PurpleAlienInterval: 10
@@ -33741,7 +33741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 1840145737}
   SpiderInterval: 5
   PurpleAlienInterval: 10
@@ -33793,7 +33793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 1860712400}
   SpiderInterval: 5
   PurpleAlienInterval: 10

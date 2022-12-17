@@ -106,7 +106,7 @@ namespace Assets.Scripts.Player
         public void TakeDamage(float damage)
         {
             Health -= damage;
-            StartCoroutine(colorChangeOnDamage());
+            StartCoroutine(ColorChangeOnDamage());
             AudioManager.main.PlaySFX("HurtSound/" + PickHurtSound());
             HealthBar.SetHealth(Health);
 
@@ -160,7 +160,7 @@ namespace Assets.Scripts.Player
         }
 
 
-        private IEnumerator colorChangeOnDamage()
+        private IEnumerator ColorChangeOnDamage()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
