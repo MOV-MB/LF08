@@ -26925,6 +26925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1320674958}
+  EscapeCount: 0
 --- !u!114 &1047102467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32928,7 +32929,6 @@ GameObject:
   - component: {fileID: 1477784054}
   - component: {fileID: 1477784053}
   - component: {fileID: 1477784052}
-  - component: {fileID: 1477784051}
   - component: {fileID: 1477784050}
   m_Layer: 0
   m_Name: Background
@@ -32949,19 +32949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ae09580f852ff45b0aee523d860157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1477784051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477784049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fadb101700e8424797103e8697bc0b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1320674958}
 --- !u!114 &1477784052
 MonoBehaviour:
   m_ObjectHideFlags: 0
