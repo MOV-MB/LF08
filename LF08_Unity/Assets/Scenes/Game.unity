@@ -27463,7 +27463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeMenuUI: {fileID: 1534873629}
   player: {fileID: 1212947625}
-  UpgradeMenuTimer: 0
+  UpgradeMenuTimer: 5
   TextDescription1: {fileID: 91225949}
   TextDescription2: {fileID: 604563183}
   TextDescription3: {fileID: 481168115}
