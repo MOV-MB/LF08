@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -21,11 +22,11 @@ public class DatabaseHelper : MonoBehaviour
 
     private static void InitializeDatabase()
     {
-        _devPathDB = "URI=file:" + "F:\\GitHubResp\\LF08\\LF08_Unity\\Assets\\DB\\gamedb.db";
-        _pathDB = "URI=file:" + Directory.GetCurrentDirectory() + "\\gamedb.db";
-        _localPath = "F:\\GitHubResp\\LF08\\LF08_Unity\\Assets\\DB\\gamedb.db";
+        _devPathDB = "URI=file:" + "F:\\GitHubResp\\LF08\\LF08_Unity\\Assets\\DB\\Gamedb.db";
+        _pathDB = "URI=file:" + Directory.GetCurrentDirectory() + "\\Gamedb.db";
+        _localPath = Directory.GetCurrentDirectory() + "\\Assets\\DB\\Gamedb.db";
 
-        Debug.Log(_pathDB);
+        Debug.Log(_localPath);
 
         CreateDBFile();
         IDbConnection dbConnection = CreateDbConnection();
@@ -49,20 +50,21 @@ public class DatabaseHelper : MonoBehaviour
         IDbCommand createTablesCommand = dbConnection.CreateCommand();
         Debug.Log("Running CreateTables");
         createTablesCommand.CommandText = @"
-
         CREATE TABLE PLAYER (
-            ID          INTEGER   NOT NULL
-                                  PRIMARY KEY,
-            PLAYER_NAME TEXT (25) NOT NULL
+        ID          INTEGER   NOT NULL
+                          PRIMARY KEY,
+                          AUTOINCREMENT
+                          
+        PLAYER_NAME TEXT NOT NULL
         ); 
         CREATE TABLE PLAYER_STATS (
-            ID          INTEGER REFERENCES Player(ID) 
-                                NOT NULL
-                                PRIMARY KEY,
-            SCORE 	   INTEGER,                    
-            KILLCOUNT  INTEGER,
-            DEATH_COUNT INTEGER
-        );
+        ID          INTEGER REFERENCES Player(ID) 
+                        NOT NULL
+                        PRIMARY KEY,
+        SCORE 	   INTEGER,                    
+        KILLCOUNT  INTEGER,
+        DEATH_COUNT INTEGER
+);
         ";
 
         try
@@ -86,26 +88,61 @@ public class DatabaseHelper : MonoBehaviour
         return dbConnection;
     }
 
-    public static List<T> ProcessSelectStatement<T>(string query, Func<IDataReader, T> mapData)
+    public static List<T> ProcessSelectStatement<T>(string query, string playerName, Func<IDataReader, T> mapData)
     {
         IDbConnection dbConnection = CreateDbConnection();
         IDbCommand dbCommand = dbConnection.CreateCommand();
         dbCommand.CommandText = query;
-        IDataReader dataReader = dbCommand.ExecuteReader();
 
-        List<T> results = new();
-
-        while (dataReader.Read())
+        if (playerName != null)
         {
-            T obj = mapData(dataReader);
-            results.Add(obj);
+            IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
+            dbDataParameter.ParameterName = "@playerName";
+            dbDataParameter.Value = playerName;
+            dbCommand.Parameters.Add(dbDataParameter);
         }
+        List<T> results = new();
+        try
+        {
+            IDataReader dataReader = dbCommand.ExecuteReader();
 
-        dbConnection.Close();
+            while (dataReader.Read())
+            {
+                T obj = mapData(dataReader);
+                results.Add(obj);
+            }
+
+            dbConnection.Close();
+
+        }
+        catch (SqliteException e)
+        {
+            Debug.Log(e.Message);
+        }
         return results;
     }
+    public static void ProcessInsertStatement(string query, Dictionary<string, object> parameters)
+    {
+        IDbConnection dbConnection = CreateDbConnection();
+        IDbCommand dbCommand = dbConnection.CreateCommand();
+        dbCommand.CommandText = query;
 
-    public static void ProcessInsertStatement<T>(string query, T obj)
+        // Set the values of the parameters in the INSERT query
+        foreach (var parameter in parameters)
+        {
+            IDbDataParameter dbParameter = dbCommand.CreateParameter();
+            dbParameter.ParameterName = parameter.Key;
+            dbParameter.Value = parameter.Value;
+            dbCommand.Parameters.Add(dbParameter);
+        }
+
+        // Execute the INSERT query
+        dbCommand.ExecuteNonQuery();
+
+        dbConnection.Close();
+    }
+
+    public static void ProcessBasicInsertStatement<T>(string query, T obj)
     {
         IDbConnection dbConnection = CreateDbConnection();
         IDbCommand dbCommand = dbConnection.CreateCommand();
@@ -115,7 +152,7 @@ public class DatabaseHelper : MonoBehaviour
         foreach (PropertyInfo property in obj.GetType().GetProperties())
         {
             IDbDataParameter parameter = dbCommand.CreateParameter();
-            parameter.ParameterName = "@" + property.Name;
+            parameter.ParameterName = property.Name;
             parameter.Value = property.GetValue(obj);
             dbCommand.Parameters.Add(parameter);
         }
@@ -135,7 +172,7 @@ public class DatabaseHelper : MonoBehaviour
         foreach (PropertyInfo property in obj.GetType().GetProperties())
         {
             IDbDataParameter parameter = dbCommand.CreateParameter();
-            parameter.ParameterName = "@" + property.Name;
+            parameter.ParameterName = property.Name;
             parameter.Value = property.GetValue(obj);
             dbCommand.Parameters.Add(parameter);
         }

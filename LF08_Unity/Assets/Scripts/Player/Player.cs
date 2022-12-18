@@ -15,7 +15,7 @@ namespace Assets.Scripts.Player
         public float Firerate = 0.5f;
         public float MoveSpeed = 10f;
         public float Health = 100f;
-        public ulong Money = 0;
+        public long Money;
 
         private Rigidbody2D _playerRigidbody;
         public Camera Cam;
@@ -72,6 +72,7 @@ namespace Assets.Scripts.Player
         private void Shoot()
         {
             if (!(Time.time > _nextfire)) return;
+
             _nextfire = Time.time + Firerate;
             GameObject bullet = Instantiate(BulletPrefab, ShootingPoint.position, ShootingPoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -112,18 +113,20 @@ namespace Assets.Scripts.Player
 
             if (GodMode) return;
             if (Health > 0) return;
+            PlayerStatsManager.Instance.PlayerStatsLocal.IncrementDeathCount();
             StartCoroutine(DeathTime());
         }
 
         private void OnEnemyDeath(int enemyId)
         { 
-            PlayerStatsManager.Instance.PlayerStats.IncrementKillCount();
+            PlayerStatsManager.Instance.PlayerStatsLocal.IncrementKillCount();
 
-            Debug.Log("Kills: "+ PlayerStatsManager.Instance.PlayerStats.KillCount);
+            Debug.Log("Kills: "+ PlayerStatsManager.Instance.PlayerStatsLocal.KillCount);
         }
 
-        public void AddMoney(ulong amount)
+        public void AddMoney(long amount)
         {
+            PlayerStatsManager.Instance.PlayerStatsLocal.IncrementMaxGold(amount);
             Money += amount;
             Debug.Log("Money:" + Money);
         }
@@ -158,7 +161,6 @@ namespace Assets.Scripts.Player
             LeanTween.cancelAll();
             SceneManager.LoadScene(2);
         }
-
 
         private IEnumerator colorChangeOnDamage()
         {
