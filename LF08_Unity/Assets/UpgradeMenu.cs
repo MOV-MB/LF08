@@ -14,6 +14,7 @@ public class UpgradeMenu : MonoBehaviour
     public Player player;
     public int UpgradeMenuTimer;
     private float _elapsedTime;
+    private bool _boughtUpgrade;
 
     public TextMeshProUGUI TextDescription1;
     public TextMeshProUGUI TextDescription2;
@@ -92,7 +93,19 @@ public class UpgradeMenu : MonoBehaviour
         return selectedUpgrades;
     }
 
-    public void CloseUpgradeMenu()
+    public void CloseUpgradeMenuAfterBuy()
+    {
+        if (_boughtUpgrade)
+        {
+            UpgradeMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            PauseMenu.isGamePaused = false;
+            _boughtUpgrade = false;
+        }
+        else AudioManager.main.PlaySFX("notEnoughMoney");
+    }
+
+    public void SafeFunds()
     {
         UpgradeMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -130,24 +143,25 @@ public class UpgradeMenu : MonoBehaviour
     {
         switch (input)
         {
-            case "ATTACK UP":
-                player.Money = 101;
-                break;
-            case "DOUBLE SHOT":
-                player.Money = 102;
-                break;
-            case "TRIPLE SHOT":
-                player.Money = 103;
-                break;
             case "ATTACKSPEED UP":
-                player.Money = 104;
-                break;
-            case "HEALTH UP":
-                player.Money = 105;
+                if (player.Money >= 30 && player.Firerate > 0.1)
+                {
+                    _boughtUpgrade = true;
+                    player.Firerate -= 0.05f;
+                    player.Money -= 30;
+                }
                 break;
             case "HEALTH BACK":
-                player.Money = 106;
+                if (player.Money >= 10)
+                {
+                    _boughtUpgrade = true;
+                    player.Health = 100;
+                    player.Money -= 10;
+                    player.HealthBar.SetHealth(player.Health);
+                }
                 break;
         }
     }
 }
+
+
