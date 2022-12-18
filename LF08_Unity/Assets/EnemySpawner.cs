@@ -129,7 +129,7 @@ public class EnemySpawner : MonoBehaviour
     /// <summary>
     /// Returns a random spawn position from the spawn positions array.
     /// </summary>
-    /// <returns>A random spawn position.</returns>
+    /// <returns name="Vector3">A random spawn position.</returns>
     private Vector3 GetRandomSpawnPosition()
     {
         return _spawnPositions[Random.Range(0, _spawnPositions.Length)];

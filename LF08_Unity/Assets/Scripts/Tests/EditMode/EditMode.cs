@@ -7,29 +7,29 @@ using Assets.Scripts.Player;
 
 public class EditMode
 {
-    public Player player = new Player();
+    public Player Player = new();
 
     [Test]
     public void PlayerBeginningStats()
     {
-        Assert.AreEqual(false, player.GodMode);
-        Assert.AreEqual(true, player.CanMove);
-        Assert.AreEqual(30f, player.BulletForce);
-        Assert.AreEqual(0.5f, player.Firerate);
-        Assert.AreEqual(10f, player.MoveSpeed);
-        Assert.AreEqual(0, player.Money);
-        Assert.AreEqual(100f, player.Health);
+        Assert.AreEqual(false, Player.GodMode);
+        Assert.AreEqual(true, Player.CanMove);
+        Assert.AreEqual(30f, Player.BulletForce);
+        Assert.AreEqual(0.5f, Player.Firerate);
+        Assert.AreEqual(10f, Player.MoveSpeed);
+        Assert.AreEqual(0, Player.Money);
+        Assert.AreEqual(100f, Player.Health);
     }
 
     [Test]
     public void HealthbarEqualToHealth()
     {
-        Assert.AreEqual(player.Health, player.HealthBar.healthSlider.value / 100);
+        Assert.AreEqual(Player.Health, Player.HealthBar.healthSlider.value / 100);
     }
 
     [Test]
     public void ShootingPointPlacement()
     {
-        Assert.IsTrue(player.ShootingPoint.IsChildOf(player.transform));
+        Assert.IsTrue(Player.ShootingPoint.IsChildOf(Player.transform));
     }
 }
