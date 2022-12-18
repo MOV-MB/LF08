@@ -3,7 +3,12 @@ guid: 06566678ae9dc2547a702dd2d47aef78
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ShootingPoint: {fileID: 6789116448578828693, guid: 30b22ee6b6d83c849a74b488e286bfd4, type: 3}
+  - BulletPrefab: {fileID: 6814790254321090814, guid: e70db916c90dfbf478bb979b46fe9388, type: 3}
+  - Cam: {fileID: 618013412380944419, guid: 82dcc1f0871fa134c8ea921c278fc973, type: 3}
+  - HealthBar: {fileID: 1802833972968732837, guid: 8b3e6bc4adfd9d641b0e68a5a2b56375, type: 3}
+  - DeathScreen: {fileID: 5685752689595580047, guid: 9ed0a9ba4aeb8824cba2974127145315, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
