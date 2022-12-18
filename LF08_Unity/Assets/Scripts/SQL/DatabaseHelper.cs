@@ -23,7 +23,7 @@ public class DatabaseHelper : MonoBehaviour
     private static void InitializeDatabase()
     {
         _devPathDB = "URI=file:" + "F:\\GitHubResp\\LF08\\LF08_Unity\\Assets\\DB\\Gamedb.db";
-        _pathDB = "URI=file:" + Directory.GetCurrentDirectory() + "\\Gamedb.db";
+        _pathDB = "URI=file:" + Directory.GetCurrentDirectory() + "\\Assets\\DB\\Gamedb.db";
         _localPath = Directory.GetCurrentDirectory() + "\\Assets\\DB\\Gamedb.db";
 
         Debug.Log(_localPath);
@@ -81,7 +81,7 @@ public class DatabaseHelper : MonoBehaviour
     private static IDbConnection CreateDbConnection()
     {
         Debug.Log("Establishing connection...");
-        IDbConnection dbConnection = new SqliteConnection(_devPathDB);
+        IDbConnection dbConnection = new SqliteConnection(_pathDB);
         dbConnection.Open();
         Debug.Log("Connection established");
 
