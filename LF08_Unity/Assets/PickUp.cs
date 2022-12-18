@@ -26,21 +26,21 @@ public class PickUp : MonoBehaviour
 
         if (this.name.Contains("Coin"))
         {
-            _amount = 1;
+            _amount = 5;
             _player.AddMoney(_amount);
             AudioManager.main.PlaySFX(MoneyPickupSoundName);
         }
 
         else if (this.name.Contains("Money_10"))
         {
-            _amount = 10;
+            _amount = 25;
             _player.AddMoney(_amount);
             AudioManager.main.PlaySFX(MoneyPickupSoundName);
         }
 
         else if (this.name.Contains("Heart"))
         {
-            _hp = 10;
+            _hp = 20;
             _player.AddHealth(_hp);
             AudioManager.main.PlaySFX(HealthPickupSoundName);
         }

@@ -54,7 +54,7 @@ public class ShowStats : MonoBehaviour
 
     private static long CalculateScore(long killedEnemies, long overallGold)
     {
-        long score = Convert.ToInt64(overallGold * 0.25 + killedEnemies * 200);
+        long score = Convert.ToInt64(overallGold + killedEnemies * 10);
 
 
         Debug.Log(score);

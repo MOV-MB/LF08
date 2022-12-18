@@ -10,8 +10,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Spawner;
 
     public float SpiderInterval = 6f;
-    public float PurpleAlienInterval = 12f;
-    public float Alien1Interval = 24f;
+    public float PurpleAlienInterval = 20f;
+    public float Alien1Interval = 30f;
     
     public int PoolSize = 5;    // size of the enemy pool
 

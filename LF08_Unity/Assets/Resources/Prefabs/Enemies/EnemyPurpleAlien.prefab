@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3637a87d890915b4bb67986910341583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 35
+  Damage: 20
   Health: 30
   _itemList:
   - {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}

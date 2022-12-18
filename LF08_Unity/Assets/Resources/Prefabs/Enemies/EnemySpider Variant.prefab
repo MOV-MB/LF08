@@ -75,6 +75,10 @@ PrefabInstance:
       propertyPath: _itemList.Array.data[1]
       value: 
       objectReference: {fileID: 6498973288103791465, guid: 206fb93f37f65c845ba8aba332033058, type: 3}
+    - target: {fileID: 2634499429314042192, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      propertyPath: maxSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: m_Name
       value: EnemySpider Variant
