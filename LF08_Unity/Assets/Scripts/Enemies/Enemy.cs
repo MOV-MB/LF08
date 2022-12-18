@@ -33,6 +33,9 @@ namespace Assets.Scripts.Enemies
         private int _randNum; // chooses a random number to see if loot os dropped- Loot chance
         private Transform _epos; // enemy position
 
+        /// <summary>
+        /// Initializes enemy components and registers for enemy death events.
+        /// </summary>
         private void Start()
         {
             // Get the Rigidbody2D component attached to the enemy game object
@@ -40,13 +43,20 @@ namespace Assets.Scripts.Enemies
             _epos = GetComponent<Transform>();
             _player = GameObject.Find("Player");
         }
-
+        
+        /// <summary>
+        /// Updates enemy movement.
+        /// </summary>
         private void FixedUpdate()
         {
             // Update the movement direction of the enemy
             //UpdateMovement();
         }
         
+        /// <summary>
+        /// Deals damage to the player if the enemy collides with the player.
+        /// </summary>
+        /// <param name="collision">The collision data for the enemy-player collision.</param>
         protected virtual void OnCollisionStay2D(Collision2D collision)
         {
             // Check if the enemy hit the player game object
@@ -65,6 +75,10 @@ namespace Assets.Scripts.Enemies
             _timeSinceLastHit = 0f;
         }
 
+        /// <summary>
+        /// Damages the enemy and checks if it should be destroyed.
+        /// </summary>
+        /// <param name="damage">The amount of damage to apply to the enemy.</param>
         public virtual void TakeDamage(float damage)
         {
             Health -= damage;
@@ -73,12 +87,19 @@ namespace Assets.Scripts.Enemies
             Destroy(gameObject);
         }
 
+        
+        /// <summary>
+        /// Event handler for enemy death events.
+        /// </summary>
         public virtual void OnEnemyDeath()
         {
             OnDeath?.Invoke(gameObject.GetInstanceID());
             DropItem();
         }
 
+        /// <summary>
+        /// Drops an item at the enemy's position based on rarity and rng.
+        /// </summary>
         public void DropItem()
         {
             _randNum = Random.Range(0, 101); // 100% total for determining loot chance;

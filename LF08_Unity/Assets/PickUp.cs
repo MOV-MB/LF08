@@ -15,7 +15,11 @@ public class PickUp : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
     }
-
+    /// <summary>
+    /// Checks if the player is colliding with the pickup and which pickup.
+    /// And if so, adds the amount of money to the player's money.
+    /// </summary>
+    /// <param name="collision">the collision that entered the trigger</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;

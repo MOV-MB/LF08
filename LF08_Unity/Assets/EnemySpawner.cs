@@ -22,7 +22,9 @@ public class EnemySpawner : MonoBehaviour
     // Pre-determined positions for enemies to spawn at
     private Vector3[] _spawnPositions;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Initializes the enemy pools and spawn positions, and starts the enemy spawning coroutine.
+    /// </summary>
     void Start()
     {
         // Initialize the enemy pools
@@ -59,6 +61,10 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
+    /// <summary>
+    /// Coroutine that spawns enemies at intervals.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SpawnEnemies()
     {
         yield return new WaitForSeconds(SpiderInterval);
@@ -100,7 +106,11 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemies());
     }
 
-    // Returns the next enemy from the specified pool, or instantiates a new one if the pool is empty
+    /// <summary>
+    /// Returns the next enemy from the specified pool, or instantiates a new one if the pool is empty
+    /// </summary>
+    /// <param name="enemyPool"></param>
+    /// <returns></returns>
     private GameObject GetNextEnemy(IList<GameObject> enemyPool)
     {
         if (enemyPool.Count > 0)
@@ -116,9 +126,13 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Returns a random position from the spawn positions array
+    /// <summary>
+    /// Returns a random spawn position from the spawn positions array.
+    /// </summary>
+    /// <returns>A random spawn position.</returns>
     private Vector3 GetRandomSpawnPosition()
     {
         return _spawnPositions[Random.Range(0, _spawnPositions.Length)];
     }
+    
 }

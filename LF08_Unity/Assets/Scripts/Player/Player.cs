@@ -35,13 +35,18 @@ namespace Assets.Scripts.Player
         public bool CanMove = true;
         private Color _deathScreenColor;
 
+        /// <summary>
+        /// Initializes player components and registers for enemy death events.
+        /// </summary>
         private void Start()
         {
             Enemy.OnDeath += OnEnemyDeath;
             _playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Handles player input, updates player rotation and camera position.
+        /// </summary>
         private void Update()
         {
             HandlePlayerInput();
@@ -49,11 +54,17 @@ namespace Assets.Scripts.Player
             UpdateCamera();
         }
 
+        /// <summary>
+        /// Updates player movement.
+        /// </summary>
         private void FixedUpdate()
         {
             UpdatePlayerMovement();
         }
 
+        /// <summary>
+        /// Handles player shooting input.
+        /// </summary>
         private void HandlePlayerInput()
         {
             if (!CanMove) return;
@@ -69,6 +80,9 @@ namespace Assets.Scripts.Player
             _mousePosition = Cam.ScreenToWorldPoint(Input.mousePosition);
         }
 
+        /// <summary>
+        /// Fires a bullet.
+        /// </summary>
         private void Shoot()
         {
             if (!(Time.time > _nextfire)) return;
@@ -80,11 +94,18 @@ namespace Assets.Scripts.Player
             AudioManager.main.PlaySFX(PlayerShootingSoundName);
         }
 
+        /// <summary>
+        /// Updates player movement based on input.
+        /// </summary>
         private void UpdatePlayerMovement()
         {
             _playerRigidbody.MovePosition(_playerRigidbody.position + MoveSpeed * Time.fixedDeltaTime * _movement.normalized);
         }
 
+        /// <summary>
+        /// Picks a random hurt sound from resources.
+        /// </summary>
+        /// <returns>The name of a random hurt sound.</returns>
         private static string PickHurtSound()
         {
             Object[] hurtSounds = Resources.LoadAll("Audio/HurtSound/");
@@ -92,6 +113,9 @@ namespace Assets.Scripts.Player
             return hurtSounds[randomSound].name;
         }
 
+        /// <summary>
+        /// Updates player rotation to face the mouse position.
+        /// </summary>
         private void UpdatePlayerRotation()
         {
             Vector2 lookDirection = _mousePosition - _playerRigidbody.position;
@@ -99,11 +123,18 @@ namespace Assets.Scripts.Player
             _playerRigidbody.rotation = angle;
         }
 
+        /// <summary>
+        /// Updates the camera position to follow the player.
+        /// </summary>
         private void UpdateCamera()
         {
             Cam.transform.position = transform.position + new Vector3(0, 1, -5);
         }
 
+        /// <summary>
+        /// Damages the player and updates the health bar.
+        /// </summary>
+        /// <param name="damage">The amount of damage to apply to the player.</param>
         public void TakeDamage(float damage)
         {
             Health -= damage;
@@ -117,6 +148,10 @@ namespace Assets.Scripts.Player
             StartCoroutine(DeathTime());
         }
 
+        /// <summary>
+        /// Event handler for enemy death events. Increments the player's kill count.
+        /// </summary>
+        /// <param name="enemyId">The ID of the enemy that died.</param>
         private void OnEnemyDeath(int enemyId)
         { 
             PlayerStatsManager.Instance.PlayerStatsLocal.IncrementKillCount();
@@ -124,6 +159,10 @@ namespace Assets.Scripts.Player
             Debug.Log("Kills: "+ PlayerStatsManager.Instance.PlayerStatsLocal.KillCount);
         }
 
+        /// <summary>
+        /// Adds money to the player's total.
+        /// </summary>
+        /// <param name="amount">The amount of money to add.</param>
         public void AddMoney(long amount)
         {
             PlayerStatsManager.Instance.PlayerStatsLocal.IncrementMaxGold(amount);
@@ -131,13 +170,21 @@ namespace Assets.Scripts.Player
             Debug.Log("Money:" + Money);
         }
 
-        public void AddHealth(float hp)
+        /// <summary>
+        /// Adds health to the player.
+        /// </summary>
+        /// <param name="amount">The amount of health to add.</param>
+        public void AddHealth(float amount)
         {
-            if(Health < 100) Health += hp;
+            if(Health < 100) Health += amount;
             HealthBar.SetHealth(Health);
-            Debug.Log("Added " + hp + " health");
+            Debug.Log("Added " + amount + " health");
         }
         
+        /// <summary>
+        /// Coroutine that displays the death screen and loads the End Menu Scene.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator DeathTime()
         {
                 CanMove = false;
@@ -164,6 +211,10 @@ namespace Assets.Scripts.Player
             SceneManager.LoadScene(2);
         }
         
+        /// <summary>
+        /// Coroutine that flashes the player's sprite red when they take damage.
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator ColorChangeOnDamage()
         {
             for (int i = 0; i < transform.childCount; i++)

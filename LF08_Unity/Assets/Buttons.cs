@@ -9,16 +9,27 @@ public class Buttons : MonoBehaviour
 {
     private const string ButtonClickSoundName = "buttonClick";
 
+    /// <summary>
+    /// Plays a button click sound and switches to the specified scene.
+    /// </summary>
+    /// <param name="index">The index of the scene to switch to.</param>
     public void PlayButtonClickAndSwitchScene(int index)
     {
         AudioManager.main.PlaySFX(ButtonClickSoundName, callback: (sound) => SwitchScene(index));
     }
 
+    /// <summary>
+    /// Plays a button click sound.
+    /// </summary>
     public void PlayButtonClick()
     {
         AudioManager.main.PlaySFX(ButtonClickSoundName);
     }
 
+    /// <summary>
+    /// Switches to the specified scene.
+    /// </summary>
+    /// <param name="index">The index of the scene to switch to.</param>
     public void SwitchScene(int index)
     {
         SceneManager.LoadScene(index);
@@ -28,6 +39,11 @@ public class Buttons : MonoBehaviour
         PauseMenu.isGamePaused = false;
     }
 
+    /// <summary>
+    /// Checks if the entered player name is a new player or an existing player.
+    /// If it is a new player, creates a new PlayerStats object with the entered name.
+    /// If it is an existing player, retrieves the PlayerStats object for the entered name.
+    /// </summary>
     public void CheckForName()
     {
 
@@ -48,6 +64,9 @@ public class Buttons : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Retrieves the top 5 players stats and displays them in the Scoreboard scene.
+    /// </summary>
     public void RetrieveScoreBoardInfo()
     {
         GameObject name;
@@ -80,6 +99,9 @@ public class Buttons : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Closes the application.
+    /// </summary>
     public void ExitGame()
     {
         Application.Quit();
