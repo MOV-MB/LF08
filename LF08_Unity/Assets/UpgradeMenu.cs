@@ -1,16 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
 using Assets.Scripts.Player;
+using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
     // Reference to the UpgradeMenuUI object
-    public GameObject upgradeMenuUI;
-    public int upgradeMenuTimer;
-    private float elapsedTime;
+    public GameObject UpgradeMenuUI;
+    public Player player;
+    public int UpgradeMenuTimer;
+    private float _elapsedTime;
 
     public TextMeshProUGUI TextDescription1;
     public TextMeshProUGUI TextDescription2;
@@ -19,6 +22,17 @@ public class UpgradeMenu : MonoBehaviour
     public TextMeshProUGUI TextValue1;
     public TextMeshProUGUI TextValue2;
     public TextMeshProUGUI TextValue3;
+
+    public Button UpgradeButton1;
+    public Button UpgradeButton2;
+    public Button UpgradeButton3;
+
+    private void Start()
+    {
+        UpgradeButton1.onClick.AddListener(() => GetDisplayedUpgrade(1));
+        UpgradeButton2.onClick.AddListener(() => GetDisplayedUpgrade(2));
+        UpgradeButton3.onClick.AddListener(() => GetDisplayedUpgrade(3));
+    }
 
     // Dictionary of possible upgrades, with the name as the key and the value as the value
     private Dictionary<string, int> upgrades = new Dictionary<string, int>()
@@ -34,16 +48,16 @@ public class UpgradeMenu : MonoBehaviour
     void Update()
     {
         // Check if the UpgradeMenuUI object is closed and the game is not paused
-        if (!upgradeMenuUI.activeInHierarchy && !PauseMenu.isGamePaused)
+        if (!UpgradeMenuUI.activeInHierarchy && !PauseMenu.isGamePaused)
         {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime >= upgradeMenuTimer)
+            _elapsedTime += Time.deltaTime;
+            if (_elapsedTime >= UpgradeMenuTimer)
             {
                 // Reset the timer
-                elapsedTime = 0;
+                _elapsedTime = 0;
 
                 // Set the UpgradeMenuUI object to active
-                upgradeMenuUI.SetActive(true);
+                UpgradeMenuUI.SetActive(true);
                 Time.timeScale = 0f;
                 PauseMenu.isGamePaused = true;
 
@@ -66,7 +80,7 @@ public class UpgradeMenu : MonoBehaviour
         while (selectedUpgrades.Count < count)
         {
             // Choose a random name from the list of keys
-            string name = upgrades.Keys.ElementAt(Random.Range(0, upgrades.Count));
+            string name = upgrades.Keys.ElementAt(UnityEngine.Random.Range(0, upgrades.Count));
 
             // Add the name and value to the list of selected upgrades if they are not already present
             if (!selectedUpgrades.Any(x => x.Key == name))
@@ -80,11 +94,9 @@ public class UpgradeMenu : MonoBehaviour
 
     public void CloseUpgradeMenu()
     {
-        if(upgradeMenuUI.activeInHierarchy)
-        {
-            upgradeMenuUI.SetActive(false);
-            Time.timeScale = 1f;
-        }
+        UpgradeMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        PauseMenu.isGamePaused = false;
     }
 
     // Displays the specified upgrades in the UpgradeMenuUI object
@@ -101,5 +113,41 @@ public class UpgradeMenu : MonoBehaviour
         // Assign the third upgrade to TextDescription3 and TextValue3
         TextDescription3.text = selectedUpgrades[2].Key;
         TextValue3.text = selectedUpgrades[2].Value.ToString();
+    }
+
+    public void GetDisplayedUpgrade(int buttonNumber)
+    {
+        string description = "";
+
+        if (buttonNumber == 1) description = TextDescription1.text;
+        else if(buttonNumber == 2) description = TextDescription2.text;
+        else if(buttonNumber == 3) description = TextDescription3.text;
+
+        ApplyUpgrade(description);
+    }
+
+    private void ApplyUpgrade(string input)
+    {
+        switch (input)
+        {
+            case "ATTACK UP":
+                player.Money = 101;
+                break;
+            case "DOUBLE SHOT":
+                player.Money = 102;
+                break;
+            case "TRIPLE SHOT":
+                player.Money = 103;
+                break;
+            case "ATTACKSPEED UP":
+                player.Money = 104;
+                break;
+            case "HEALTH UP":
+                player.Money = 105;
+                break;
+            case "HEALTH BACK":
+                player.Money = 106;
+                break;
+        }
     }
 }
