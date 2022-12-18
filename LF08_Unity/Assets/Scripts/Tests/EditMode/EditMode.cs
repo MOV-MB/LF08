@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Assets.Scripts.Player;
 
-public class EditMode
+public class EditMode : MonoBehaviour
 {
-    public Player Player = new();
+    public Player Player = GameObject.Find("Player").GetComponent<Player>();
 
     [Test]
     public void PlayerBeginningStats()
@@ -15,8 +15,8 @@ public class EditMode
         Assert.AreEqual(false, Player.GodMode);
         Assert.AreEqual(true, Player.CanMove);
         Assert.AreEqual(30f, Player.BulletForce);
-        Assert.AreEqual(0.5f, Player.Firerate);
-        Assert.AreEqual(10f, Player.MoveSpeed);
+        Assert.AreEqual(0.3f, Player.Firerate);
+        Assert.AreEqual(8.5f, Player.MoveSpeed);
         Assert.AreEqual(0, Player.Money);
         Assert.AreEqual(100f, Player.Health);
     }
@@ -24,7 +24,7 @@ public class EditMode
     [Test]
     public void HealthbarEqualToHealth()
     {
-        Assert.AreEqual(Player.Health, Player.HealthBar.healthSlider.value / 100);
+        Assert.AreEqual(Player.Health, Player.HealthBar.healthSlider.value * 100);
     }
 
     [Test]
