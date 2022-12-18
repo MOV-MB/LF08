@@ -9,9 +9,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Alien1Prefab;
     public GameObject Spawner;
 
-    public float SpiderInterval = 5f;
-    public float PurpleAlienInterval = 10f;
-    public float Alien1Interval = 20f;
+    public float SpiderInterval = 6f;
+    public float PurpleAlienInterval = 12f;
+    public float Alien1Interval = 24f;
     
     public int PoolSize = 5;    // size of the enemy pool
 
@@ -58,14 +58,16 @@ public class EnemySpawner : MonoBehaviour
         };
 
         // Start the enemy spawning coroutine
-        StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemySpider());
+        StartCoroutine(SpawnEnemyPurpleAlien());
+        StartCoroutine(SpawnEnemyAlien1());
     }
 
     /// <summary>
     /// Coroutine that spawns enemies at intervals.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemySpider()
     {
         yield return new WaitForSeconds(SpiderInterval);
 
@@ -79,6 +81,13 @@ public class EnemySpawner : MonoBehaviour
         // Add the spider back to the pool
         _spiderPool.Add(spider);
 
+        if (SpiderInterval > 0.1f) SpiderInterval -= 0.2f;
+
+        StartCoroutine(SpawnEnemySpider());
+    }
+
+    private IEnumerator SpawnEnemyPurpleAlien()
+    {
         yield return new WaitForSeconds(PurpleAlienInterval);
 
         // Get the next purple alien from the pool
@@ -91,6 +100,13 @@ public class EnemySpawner : MonoBehaviour
         // Add the purple alien back to the pool
         _purpleAlienPool.Add(purpleAlien);
 
+        if (PurpleAlienInterval > 0.1f) PurpleAlienInterval -= 0.2f;
+
+        StartCoroutine(SpawnEnemyPurpleAlien());
+    }
+
+    private IEnumerator SpawnEnemyAlien1()
+    {
         yield return new WaitForSeconds(Alien1Interval);
 
         // Get the next alien1 from the pool
@@ -103,7 +119,9 @@ public class EnemySpawner : MonoBehaviour
         // Add the alien1 back to the pool
         _alien1Pool.Add(alien1);
 
-        StartCoroutine(SpawnEnemies());
+        if (Alien1Interval > 0.1f) Alien1Interval -= 0.2f;
+
+        StartCoroutine(SpawnEnemyAlien1());
     }
 
     /// <summary>

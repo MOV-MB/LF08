@@ -27463,7 +27463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeMenuUI: {fileID: 1534873629}
   player: {fileID: 1212947625}
-  UpgradeMenuTimer: 0
+  UpgradeMenuTimer: 30
   TextDescription1: {fileID: 91225949}
   TextDescription2: {fileID: 604563183}
   TextDescription3: {fileID: 481168115}
@@ -32604,7 +32604,7 @@ MonoBehaviour:
   ShootingPoint: {fileID: 1537252597}
   BulletPrefab: {fileID: 6814790254321090814, guid: e70db916c90dfbf478bb979b46fe9388, type: 3}
   BulletForce: 30
-  Firerate: 0.3
+  Firerate: 0.4
   MoveSpeed: 8.5
   Health: 100
   Money: 0
@@ -34334,7 +34334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860712400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -91.76, y: -3.06, z: -0.046594016}
+  m_LocalPosition: {x: -91.1, y: -6.85, z: -0.046594016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
