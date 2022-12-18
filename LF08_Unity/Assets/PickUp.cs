@@ -5,44 +5,43 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    private Player player;
-    private const string moneyPickupSoundName = "moneyPickup";
-    private const string healthPickupSoundName = "hpPickup";
-    ulong amount = 0;
-    float hp = 0;
+    private Player _player;
+    private const string MoneyPickupSoundName = "moneyPickup";
+    private const string HealthPickupSoundName = "hpPickup";
+    private long _amount = 0;
+    private float _hp = 0;
 
     private void Start()
     {
-        player = GameObject.Find("Player").gameObject.GetComponent<Player>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (!collision.CompareTag("Player")) return;
+
+        if (this.name.Contains("Coin"))
         {
-            if (this.name.Contains("Coin"))
-            {
-                amount = 1;
-                player.AddMoney(amount);
-                AudioManager.main.PlaySFX(moneyPickupSoundName);
-            }
-
-            else if (this.name.Contains("Money_10"))
-            {
-                amount = 10;
-                player.AddMoney(amount);
-                AudioManager.main.PlaySFX(moneyPickupSoundName);
-            }
-
-            else if (this.name.Contains("Heart"))
-            {
-                hp = 20;
-                player.AddHealth(hp);
-                AudioManager.main.PlaySFX(healthPickupSoundName);
-            }
-
-            Destroy(this.gameObject);
+            _amount = 1;
+            _player.AddMoney(_amount);
+            AudioManager.main.PlaySFX(MoneyPickupSoundName);
         }
+
+        else if (this.name.Contains("Money_10"))
+        {
+            _amount = 10;
+            _player.AddMoney(_amount);
+            AudioManager.main.PlaySFX(MoneyPickupSoundName);
+        }
+
+        else if (this.name.Contains("Heart"))
+        {
+            _hp = 10;
+            _player.AddHealth(_hp);
+            AudioManager.main.PlaySFX(HealthPickupSoundName);
+        }
+
+        Destroy(this.gameObject);
     }
 
 }

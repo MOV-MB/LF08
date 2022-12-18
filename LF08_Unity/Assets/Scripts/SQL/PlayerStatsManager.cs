@@ -4,7 +4,7 @@ using System.Linq;
 public class PlayerStatsManager
 {
     private static PlayerStatsManager _instance;
-    public PlayerStats PlayerStats = new();
+    public PlayerStats PlayerStatsLocal = new();
     
 
     public static PlayerStatsManager Instance
@@ -14,54 +14,58 @@ public class PlayerStatsManager
 
     public List<PlayerStats> GetTopPlayers()
     {
-        string query = "SELECT * FROM PLAYER_STATS INNER JOIN PLAYER ON PLAYER_STATS.ID = PLAYER.ID ORDER BY SCORE DESC LIMIT 5";
+        string query = @"SELECT 
+                        PS.*, 
+                        P.PLAYER_NAME
+                        FROM PLAYER_STATS PS
+                        INNER JOIN PLAYER P ON PS.ID = P.ID
+                        ORDER BY PS.SCORE DESC LIMIT 5";
 
-        List<PlayerStats> topPlayers = DatabaseHelper.ProcessSelectStatement(
-            query,
-            dataReader => new PlayerStats {
-                Id = dataReader.GetInt32(0),
-                Score = dataReader.GetInt32(1),
-                KillCount = dataReader.GetInt32(2),
-                DeathCount = dataReader.GetInt32(3),
-                PlayerName = dataReader.GetString(4)
-            }
-        );
-
+        List<PlayerStats> topPlayers = DatabaseHelper.ProcessSelectStatement(query, null,dataReader => new PlayerStats {
+            Id = dataReader.GetInt32(0),
+            Score = dataReader.GetInt64(1),
+            KillCount = dataReader.GetInt64(2),
+            DeathCount = dataReader.GetInt64(3),
+            PlayerName = dataReader.GetString(4) 
+        });
         return topPlayers;
     }
 
     public PlayerStats GetPlayerStats(string playerName)
     {
-        string query = $"SELECT * FROM PLAYER_STATS\r\nWHERE ID = (SELECT ID FROM PLAYER WHERE PLAYER_NAME = {playerName})";
-        List<PlayerStats> playerStatsList = DatabaseHelper.ProcessSelectStatement(
-            query,
-            dataReader => new PlayerStats {
-                Id = dataReader.GetInt32(0),
-                Score = dataReader.GetInt32(1),
-                KillCount = dataReader.GetInt32(2),
-                DeathCount = dataReader.GetInt32(3)
-            }
-        );
+        string query = "SELECT * FROM PLAYER_STATS WHERE ID = (SELECT ID FROM PLAYER WHERE PLAYER_NAME = @playerName );";
+        List<PlayerStats> playerStatsList = DatabaseHelper.ProcessSelectStatement(query, playerName, dataReader => new PlayerStats {
+            Id = dataReader.GetInt32(0),
+            Score = dataReader.GetInt64(1),
+            KillCount = dataReader.GetInt64(2),
+            DeathCount = dataReader.GetInt64(3)
+        });
 
         return playerStatsList.FirstOrDefault();
     }
 
     public void SavePlayerStats()
     {
-        if (PlayerStats.isNewPlayer)
+        if (PlayerStatsLocal.IsNewPlayer)
         {
-            string query = @"INSERT INTO PLAYER (PLAYER_NAME)
-                            VALUES (@PLAYER_NAME)
-
+            string query = @"INSERT INTO PLAYER (PLAYER_NAME) VALUES (@PlayerName);
                             INSERT INTO PLAYER_STATS (ID, SCORE, KILLCOUNT, DEATH_COUNT)
-                            VALUES (LAST_INSERT_ROWID(), @SCORE, @KILLCOUNT, @DEATH_COUNT);";
+                            VALUES (LAST_INSERT_ROWID(), @Score, @KillCount, @DeathCount);";
 
-            DatabaseHelper.ProcessInsertStatement(query, PlayerStats);
+            Dictionary<string, object> parameters = new()
+            {
+                { "@PlayerName",PlayerStatsLocal.PlayerName },
+                { "@Score", PlayerStatsLocal.Score},
+                { "@KillCount", PlayerStatsLocal.KillCount },
+                { "@DeathCount", PlayerStatsLocal.DeathCount}
+            };
+
+            DatabaseHelper.ProcessInsertStatement(query, parameters);
         }
         else
         {
-            string query = "UPDATE PLAYER_STATS SET Score = @Score, KillCount = @KillCount, DeathCount = @DeathCount WHERE Id = @Id";
-            DatabaseHelper.ProcessUpdateStatement(query, PlayerStats);
+            string query = "UPDATE PLAYER_STATS SET Score = Score, KillCount = KillCount, DeathCount = DeathCount WHERE Id = Id";
+            DatabaseHelper.ProcessUpdateStatement(query, PlayerStatsLocal);
         }
     }
 
