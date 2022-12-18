@@ -6685,7 +6685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 517052495}
   SpiderInterval: 5
   PurpleAlienInterval: 10
@@ -26881,6 +26881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1320674958}
+  EscapeCount: 0
 --- !u!114 &1047102467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26924,7 +26925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 1134596634}
   SpiderInterval: 5
   PurpleAlienInterval: 10
@@ -32024,7 +32025,7 @@ MonoBehaviour:
   ShootingPoint: {fileID: 1537252597}
   BulletPrefab: {fileID: 6814790254321090814, guid: e70db916c90dfbf478bb979b46fe9388, type: 3}
   BulletForce: 30
-  Firerate: 0.9
+  Firerate: 0.3
   MoveSpeed: 8.5
   Health: 100
   Money: 0
@@ -32884,7 +32885,6 @@ GameObject:
   - component: {fileID: 1477784054}
   - component: {fileID: 1477784053}
   - component: {fileID: 1477784052}
-  - component: {fileID: 1477784051}
   - component: {fileID: 1477784050}
   m_Layer: 0
   m_Name: Background
@@ -32905,19 +32905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ae09580f852ff45b0aee523d860157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1477784051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477784049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fadb101700e8424797103e8697bc0b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1320674958}
 --- !u!114 &1477784052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33697,7 +33684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 1840145737}
   SpiderInterval: 5
   PurpleAlienInterval: 10
@@ -33749,7 +33736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpiderPrefab: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
   PurpleAlienPrefab: {fileID: 5838765732880962616, guid: 77d77ec47fe73924b88c90199793231c, type: 3}
-  Alien1Prefab: {fileID: 214164098778057125, guid: 131b33da064b4af4a822803f5064d92a, type: 3}
+  Alien1Prefab: {fileID: 289919927131892075, guid: e51723df004803547992424530dfadb9, type: 3}
   Spawner: {fileID: 1860712400}
   SpiderInterval: 5
   PurpleAlienInterval: 10
