@@ -6647,7 +6647,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1047102468}
         m_TargetAssemblyTypeName: UpgradeMenu, Assembly-CSharp
-        m_MethodName: CloseUpgradeMenu
+        m_MethodName: SafeFunds
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27461,26 +27461,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69e5b5e6898c6a4ab01dbcb0038f4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   UpgradeMenuUI: {fileID: 1534873629}
   player: {fileID: 1212947625}
-  UpgradeMenuTimer: 5
-=======
-  upgradeMenuUI: {fileID: 1534873629}
-  upgradeMenuTimer: 5
->>>>>>> parent of d696cfc (Fixed Unit Tests Locally)
+  UpgradeMenuTimer: 0
   TextDescription1: {fileID: 91225949}
   TextDescription2: {fileID: 604563183}
   TextDescription3: {fileID: 481168115}
   TextValue1: {fileID: 195397166}
   TextValue2: {fileID: 2076421088}
   TextValue3: {fileID: 556843700}
-<<<<<<< HEAD
   UpgradeButton1: {fileID: 1343669328}
   UpgradeButton2: {fileID: 1001157232}
   UpgradeButton3: {fileID: 2146611219}
-=======
->>>>>>> parent of d696cfc (Fixed Unit Tests Locally)
 --- !u!1 &1134596634
 GameObject:
   m_ObjectHideFlags: 0
@@ -32549,8 +32541,6 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5443159921058971824, guid: 960ac5f64cdcbb54e96b035321552b30, type: 3}
   m_PrefabInstance: {fileID: 1270045167}
-<<<<<<< HEAD
-=======
   m_PrefabAsset: {fileID: 0}
 --- !u!50 &1212947617
 Rigidbody2D:
@@ -32558,18 +32548,7 @@ Rigidbody2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
->>>>>>> parent of cd4aea0 (Merge pull request #2 from MOV-MB/GameSceneMerge)
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-=======
---- !u!50 &1212947617
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
->>>>>>> parent of d696cfc (Fixed Unit Tests Locally)
   m_GameObject: {fileID: 1212947614}
   m_BodyType: 0
   m_Simulated: 1
@@ -32625,11 +32604,7 @@ MonoBehaviour:
   ShootingPoint: {fileID: 1537252597}
   BulletPrefab: {fileID: 6814790254321090814, guid: e70db916c90dfbf478bb979b46fe9388, type: 3}
   BulletForce: 30
-<<<<<<< HEAD
-  Firerate: 0.5
-=======
   Firerate: 0.3
->>>>>>> parent of d696cfc (Fixed Unit Tests Locally)
   MoveSpeed: 8.5
   Health: 100
   Money: 0
@@ -32639,13 +32614,6 @@ MonoBehaviour:
   EaseOnDeath: 0
   GodMode: 0
   CanMove: 1
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> parent of d696cfc (Fixed Unit Tests Locally)
-=======
->>>>>>> parent of cd4aea0 (Merge pull request #2 from MOV-MB/GameSceneMerge)
 --- !u!1 &1246881520
 GameObject:
   m_ObjectHideFlags: 0
@@ -39950,7 +39918,6 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2146611217}
   m_OnClick:
     m_PersistentCalls:
-<<<<<<< HEAD
       m_Calls:
       - m_Target: {fileID: 1047102467}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
@@ -39988,6 +39955,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-=======
-      m_Calls: []
->>>>>>> parent of d696cfc (Fixed Unit Tests Locally)

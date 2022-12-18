@@ -133,8 +133,8 @@ public class UpgradeMenu : MonoBehaviour
         string description = "";
 
         if (buttonNumber == 1) description = TextDescription1.text;
-        else if(buttonNumber == 2) description = TextDescription2.text;
-        else if(buttonNumber == 3) description = TextDescription3.text;
+        else if (buttonNumber == 2) description = TextDescription2.text;
+        else if (buttonNumber == 3) description = TextDescription3.text;
 
         ApplyUpgrade(description);
     }
