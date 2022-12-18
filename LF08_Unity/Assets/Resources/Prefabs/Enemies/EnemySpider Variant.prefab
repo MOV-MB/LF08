@@ -67,6 +67,14 @@ PrefabInstance:
       propertyPath: itemList.Array.data[2]
       value: 
       objectReference: {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
+    - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      propertyPath: _itemList.Array.data[0]
+      value: 
+      objectReference: {fileID: 5788961128856243503, guid: f1b371c5cba65604e865852b0178c66f, type: 3}
+    - target: {fileID: 2634499429314042157, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
+      propertyPath: _itemList.Array.data[1]
+      value: 
+      objectReference: {fileID: 6498973288103791465, guid: 206fb93f37f65c845ba8aba332033058, type: 3}
     - target: {fileID: 2771757046744094035, guid: 36f16ce131fecf8409a1fa9bcf7ccf11, type: 3}
       propertyPath: m_Name
       value: EnemySpider Variant
