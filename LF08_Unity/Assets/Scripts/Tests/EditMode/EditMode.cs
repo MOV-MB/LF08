@@ -7,7 +7,7 @@ using Assets.Scripts.Player;
 
 public class EditMode : MonoBehaviour
 {
-    // public Player Player = GameObject.Find("Player").GetComponent<Player>();
+    // public Player Player = GameObject.Find("Player").GetComponent<Player>();S
 
     [Test]
     public void PlayerBeginningStats()
