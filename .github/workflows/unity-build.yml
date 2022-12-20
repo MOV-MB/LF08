@@ -37,6 +37,15 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-        
+
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: LF08_Unity
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
           
       - name: "Freeing up disk space"
         run: |
