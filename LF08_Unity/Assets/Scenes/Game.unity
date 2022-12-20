@@ -27220,7 +27220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ae1e84431dc6ea41a9d2fd6d191a76c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4019158daf5e0c64990d6ba1b5537186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -27463,7 +27463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeMenuUI: {fileID: 1534873629}
   player: {fileID: 1212947625}
-  UpgradeMenuTimer: 20
+  UpgradeMenuTimer: 30
   TextDescription1: {fileID: 91225949}
   TextDescription2: {fileID: 604563183}
   TextDescription3: {fileID: 481168115}
@@ -33239,7 +33239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ae1e84431dc6ea41a9d2fd6d191a76c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4019158daf5e0c64990d6ba1b5537186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -39857,7 +39857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8ae1e84431dc6ea41a9d2fd6d191a76c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4019158daf5e0c64990d6ba1b5537186, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
