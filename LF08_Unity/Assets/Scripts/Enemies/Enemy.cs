@@ -49,8 +49,7 @@ namespace Assets.Scripts.Enemies
         /// </summary>
         private void FixedUpdate()
         {
-            // Update the movement direction of the enemy
-            //UpdateMovement();
+            
         }
         
         /// <summary>
