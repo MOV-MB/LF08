@@ -46,6 +46,7 @@ public class ShowStats : MonoBehaviour
         else
         {
             _personalBest.text = "PB:\n" + _localScore;
+            PlayerStatsManager.Instance.PlayerStatsLocal.Score = _localScore;
         }
 
 
