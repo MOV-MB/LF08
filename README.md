@@ -1,2 +1,2 @@
 # LF08
-## Download from Release on the right side
+## Download from Releases on the right side
